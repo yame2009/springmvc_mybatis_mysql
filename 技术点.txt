@@ -30,6 +30,9 @@
 --springmvc国际化 基于浏览器语言的国际化配置 http://www.cnblogs.com/dennisit/p/3359008.html
 
 
+SpringMVC学习系列（7） 之 格式化显示  http://www.cnblogs.com/liukemng/p/3748137.html
+
+
 SpringMVC中应用Ajax异步通讯 http://www.cnblogs.com/dennisit/archive/2013/04/25/3043171.html
 
 Ajax用户名验证、服务条款加载、验证码生成    http://www.cnblogs.com/dennisit/archive/2013/01/28/2880463.html

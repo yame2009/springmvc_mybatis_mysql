@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hb.models.ValidateModel;
 
+/**
+ * 参考网页： http://www.cnblogs.com/liukemng/p/3738055.html
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping(value = "/validate")
 public class ValidateController {
@@ -23,7 +28,7 @@ public class ValidateController {
         if(!model.containsAttribute("contentModel")){
             model.addAttribute("contentModel", new ValidateModel());
         }
-        return "validatetest";
+        return "test/validatetest";
     }
     
     @RequestMapping(value="/test", method = {RequestMethod.POST})
@@ -32,7 +37,7 @@ public class ValidateController {
         //如果有验证错误 返回到form页面
         if(result.hasErrors())
             return test(model);
-        return "validatesuccess";     
+        return "test/validatesuccess";     
     }
     
 }
