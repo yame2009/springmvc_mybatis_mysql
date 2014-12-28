@@ -1,0 +1,83 @@
+
+
+1. spring
+2. springMVC (校验，国际化，拦截器，上传下载)
+3. Mybatis   （物理分页，alibaba.druid多数据源，事物管理，配置druid监控spring jdbc）
+4. radis
+5. mysql+pg
+6. logback
+7. Mongodb
+8. easyui+jsp
+9. CFX构建webservice实例,与Spring整合
+10.hessian
+11.jetty
+12.git
+13.maven(父子模块)
+14.netty
+15.cxf webservice
+
+
+--springmvc定制REST风格 以及 与JSR303 Bean校验整合  http://www.cnblogs.com/dennisit/archive/2013/04/13/3019391.html
+
+--springmvc不同方式控制器实现与参数传递  http://www.cnblogs.com/dennisit/archive/2013/04/13/3017910.html
+
+--springmvc 实例应用  http://www.cnblogs.com/dennisit/archive/2013/04/10/3012993.html
+
+--spring配置声明式事务   http://www.cnblogs.com/dennisit/archive/2013/02/19/2917156.html
+
+--springmvc国际化 基于请求的国际化配置  http://www.cnblogs.com/dennisit/p/3366368.html
+
+--springmvc国际化 基于浏览器语言的国际化配置 http://www.cnblogs.com/dennisit/p/3359008.html
+
+
+SpringMVC中应用Ajax异步通讯 http://www.cnblogs.com/dennisit/archive/2013/04/25/3043171.html
+
+Ajax用户名验证、服务条款加载、验证码生成    http://www.cnblogs.com/dennisit/archive/2013/01/28/2880463.html
+
+formValidator输入验证、异步验证实例 + licenseImage验证码插件实例应用 http://www.cnblogs.com/dennisit/p/3410147.html
+
+Java生成中文验证码    http://www.cnblogs.com/dennisit/archive/2013/02/16/2913263.html
+
+Spring 3之MVC & Security简单整合开发（一）http://sarin.iteye.com/blog/829738
+
+SpringMVC中使用Interceptor拦截器   http://haohaoxuexi.iteye.com/blog/1750680
+
+SpringMVC配置JSON、JSP、FreeMark多视图解析器配置  http://my.oschina.net/u/1859292/blog/309812
+
+ Spring + mybatis整合方案总结 结合实例应用 http://www.cnblogs.com/dennisit/archive/2013/04/10/3012972.html
+ 
+ druid简单教程  http://www.cnblogs.com/blogsme/archive/2013/05/13/3075308.html
+ 
+MyBatis 一级和二级缓存    http://www.cnblogs.com/zemliu/p/3239014.html
+
+MyBatis 物理分页    http://www.cnblogs.com/zemliu/p/3242966.html
+
+
+利用MyBatis的动态SQL特性抽象统一SQL查询接口  http://www.cnblogs.com/zemliu/p/3248171.html
+
+springmvc整合redis架构搭建实例 http://www.cnblogs.com/dennisit/p/3614521.html
+
+
+
+SpringMVC整合Mongodb开发 架构搭建  http://www.cnblogs.com/dennisit/p/3372568.html
+
+SpringMVC整合Mongodb开发,高级操作  http://www.cnblogs.com/dennisit/p/3374297.html
+
+mongodb高级操作及在Java企业级开发中的应用.   http://www.cnblogs.com/dennisit/archive/2013/01/29/2881006.html
+
+mongodb管理与安全认证    http://www.cnblogs.com/dennisit/archive/2013/02/22/2922906.html
+
+mongodb性能优化    http://www.cnblogs.com/dennisit/archive/2013/01/27/2879017.html
+
+
+CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/3649964.html
+
+
+
+初识使用Apache MINA 开发高性能网络应用程序   http://www.cnblogs.com/dennisit/archive/2013/02/21/2920693.html
+
+
+
+
+
+

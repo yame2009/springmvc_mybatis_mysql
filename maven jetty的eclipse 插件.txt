@@ -1,0 +1,97 @@
+maven jetty的eclipse 插件:
+http://www.cnblogs.com/hitwtx/archive/2011/11/14/2248373.html
+
+工程运行配置配置命令：
+	方法一：org.mortbay.jetty:maven-jetty-plugin:run
+	方法二（使用pom.xml中的配置插件）：jetty:run
+
+
+jetty插件下载地址:http://jettylauncher.sourceforge.net/updates/
+
+在maven项目中经常会用到jetty插件，mvn jetty:run默认启动的是8080端口，tomcat通常占用这个端口，可以手动修改jetty插件的启动端口，命令如下： 
+
+mvn jetty:run -Djetty.port=9999 
+
+另一种方法是修改pom文件，jetty插件部分代码如下： 
+
+<plugin> 
+                <groupId>org.mortbay.jetty</groupId> 
+                <artifactId>maven-jetty-plugin</artifactId> 
+                <version>6.1.6</version> 
+                <configuration> 
+                    <connectors> 
+                       <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector"> 
+                            <port>9999</port> 
+                            <maxIdleTime>60000</maxIdleTime> 
+                        </connector> 
+                    </connectors> 
+                </configuration> 
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin> 
+
+port节点填写想要启动的端口，我的是9999。jetty插件的官网： 
+
+http://docs.codehaus.org/display/JETTY/Maven+Jetty+Plugin 
+
+在项目打包或部署的时候，需要跳过test代码部分，命令如下： 
+
+mvn -Dmaven.test.skip=true package
+
+ 
+
+运行 
+mvn jetty:run-war 
+
+结果报错提示 
+The plugin 'org.mortbay.jetty:maven-jetty-plugin' does not exis 
+
+在settings.xml 加了这么一句后, 解决.
+
+引用
+
+<pluginGroups> 
+    <pluginGroup>org.mortbay.jetty</pluginGroup> 
+</pluginGroups>
+
+
+
+造成我上面错误的原因是在我项目的pom.xml没有配置jetty插件 
+解决方式还可以在你项目的pom.xml文件中加入
+
+引用
+
+<project> 
+     [...] 
+     <build> 
+        <finalName>simple-webapp</finalName> 
+        <plugins> 
+            <plugin> 
+              <groupId>org.mortbay.jetty</groupId> 
+              <artifactId>maven-jetty-plugin</artifactId> 
+            </plugin> 
+         </plugins> 
+      </build> 
+      [...] 
+</project>
+
+一个不会敲代码的程序员
+

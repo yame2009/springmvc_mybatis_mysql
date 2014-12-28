@@ -1,0 +1,25 @@
+Mybatis分页和Spring的集成
+
+http://my.oschina.net/miemiedev/blog/135516
+
+
+MyBatis3.1.1+Spring3.1.1的增、删、查、改以及分页和事务管理，
+分页方法二：
+http://wenku.baidu.com/link?url=Z1NeiIeE3ZbCT5-2VNlHtoSbd_qGD-NeWzr4Ha-pXFNpG0nleLne3RsgH1_BhIzKMLoVrErmFQNk-4WLefiKzrntkU0ymt3ZOnlrRx9j81C
+
+
+MongoDB学习笔记之 第4章 MongoDB整合Spring
+
+http://limingnihao.iteye.com/blog/1940446
+
+http://www.cnblogs.com/hoojo/archive/2011/06/02/2068665.html
+
+
+maven 查询jar包
+http://mvnrepository.com/
+
+工程访问地址：
+http://localhost:8089/test/index2.html
+
+
+
