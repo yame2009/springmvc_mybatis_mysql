@@ -53,7 +53,26 @@
 	<context:component-scan base-package="com.hb.controller"></context:component-scan>
 
 	<!-- Configures the @Controller programming model -->
-	<mvc:annotation-driven />
+	<!-- <mvc:annotation-driven /> -->
+	
+    <!-- 默认的注解映射的支持 ,数据验证 -->  
+    <mvc:annotation-driven validator="validator" conversion-service="conversion-service" />
+    
+    <!-- 数据验证,采用Hibernate-validator来进行验证 ,Hibernate-validator实现了JSR-303验证框架支持注解风格的验证。
+    首先我们要到http://hibernate.org/validator/下载需要的jar包，这里以4.3.1.Final作为演示，
+    解压后把hibernate-validator-4.3.1.Final.jar、jboss-logging-3.1.0.jar、validation-api-1.0.0.GA.jar这三个包添加到项目中。  -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>
+        <!--不设置则默认为classpath下的 ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="validatemessageSource"/>
+    </bean>
+    <bean id="conversion-service" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
+    <bean id="validatemessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
+        <property name="basename" value="classpath:config/validatemessages"/>  
+        <property name="fileEncodings" value="utf-8"/>  
+        <property name="cacheSeconds" value="120"/>  
+    </bean>
+    
 
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
 	<bean
@@ -99,13 +118,17 @@
 		<!-- 定义视图后缀格式 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	
+	<!-- 如果当前请求为“/”时，则转发到“/helloworld/index" -->
+	<mvc:view-controller path="/" view-name="forward:/index"/>
 
 	<!-- 1.基于浏览器请求的国际化实现：定义国际化消息 -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 
 		<!-- 其中basename用来指定properties文件的通用名 如实例中的messages_en.properties,messages_ja.properties通用名都是messages -->
-		<property name="basename" value="messages" />
+		<property name="basename" value="classpath:messages" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="useCodeAsDefaultMessage" value="true" />
 
@@ -113,50 +136,35 @@
 
 
 	<!-- 2.配置基于Session的处理,将提交上来的locale参数进行处理。方法3时，需要将此方法屏蔽 -->
-	<!-- <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"> 
-		该属性可以不用配置 <property name="defaultLocale" value="ja"></property> </bean> -->
+	 <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+			<!-- 该属性可以不用配置 -->
+		 <property name="defaultLocale" value="zh"></property> 
+	 </bean> 
 
 	<!-- 3.基于Cookie的国际化实现： -->
 	<!-- 3.国际化配置 , 获取本地.需要将方法二屏蔽 -->
-	<bean id="localeResolver"
+	<!-- <bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		
-		<!-- 设置cookieName名称，可以根据名称通过js来修改设置，也可以像上面演示的那样修改设置，默认的名称为 类名+LOCALE（即：org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE -->
+		设置cookieName名称，可以根据名称通过js来修改设置，也可以像上面演示的那样修改设置，默认的名称为 类名+LOCALE（即：org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE
 		<property name="cookieName" value="lang" />
-		<!-- 设置最大有效时间，如果是-1，则不存储，浏览器关闭后即失效，默认为Integer.MAX_INT -->
+		设置最大有效时间，如果是-1，则不存储，浏览器关闭后即失效，默认为Integer.MAX_INT
 		<property name="cookieMaxAge" value="94608000">
-			<!-- 设置cookie可见的地址，默认是“/”即对网站所有地址都是可见的，如果设为其它地址，则只有该地址或其后的地址才可见 -->
+			设置cookie可见的地址，默认是“/”即对网站所有地址都是可见的，如果设为其它地址，则只有该地址或其后的地址才可见
 			<property name="cookiePath" value="/">
-	</bean>
+	</bean> -->
 
 	<!-- 国际化请求拦截器处理 -->
 	<mvc:interceptors>
 		<!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+		
+	    <!-- 如果不定义 mvc:mapping path 将拦截所有的URL请求 -->
+	    <bean class="com.hb.web.auth.AuthInterceptor"></bean>
 	</mvc:interceptors>
 
 
-	<!-- 默认的注解映射的支持 -->  
-    <mvc:annotation-driven validator="validator" conversion-service="conversion-service" />
-    
-    <!-- 数据验证,采用Hibernate-validator来进行验证 ,Hibernate-validator实现了JSR-303验证框架支持注解风格的验证。
-    首先我们要到http://hibernate.org/validator/下载需要的jar包，这里以4.3.1.Final作为演示，
-    解压后把hibernate-validator-4.3.1.Final.jar、jboss-logging-3.1.0.jar、validation-api-1.0.0.GA.jar这三个包添加到项目中。  -->
-    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-        <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>
-        <!--不设置则默认为classpath下的 ValidationMessages.properties -->
-        <property name="validationMessageSource" ref="validatemessageSource"/>
-    </bean>
-    <bean id="conversion-service" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
-    <bean id="validatemessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
-        <property name="basename" value="classpath:config/validatemessages"/>  
-        <property name="fileEncodings" value="utf-8"/>  
-        <property name="cacheSeconds" value="120"/>  
-    </bean>
-
-
 	<!--multipartResolver 支持分段文件上传 使用时form需要加上enctype="multipart/form-data"属性,且form的method设置为POST -->
-	<bean id="multipartResolver"
+	<!-- <bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding">
 			<value>UTF-8</value>
@@ -169,7 +177,7 @@
 			<value>4096</value>
 		</property>
 		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
+	</bean> -->
 
 
 
