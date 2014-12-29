@@ -17,6 +17,11 @@
 15.cxf webservice
 
 
+--项目中用到的logback列子   http://blog.csdn.net/haidage/article/details/6797039
+--日志组件logback的介绍及配置使用方法(二) http://blog.csdn.net/zhuyucheng123/article/details/21524403
+
+--maven常用插件: 打包源码 / 跳过测试 / 单独打包依赖项  http://www.cnblogs.com/yjmyzz/p/4034502.html
+
 --springmvc定制REST风格 以及 与JSR303 Bean校验整合  http://www.cnblogs.com/dennisit/archive/2013/04/13/3019391.html
 
 --springmvc不同方式控制器实现与参数传递  http://www.cnblogs.com/dennisit/archive/2013/04/13/3017910.html
@@ -29,8 +34,16 @@
 
 --springmvc国际化 基于浏览器语言的国际化配置 http://www.cnblogs.com/dennisit/p/3359008.html
 
+--spring mvc拦截器和<mvc:annotation-driven />的详解  http://www.cnblogs.com/yangzhilong/p/3725849.html
 
-SpringMVC学习系列（7） 之 格式化显示  http://www.cnblogs.com/liukemng/p/3748137.html
+
+--SpringMVC学习系列（7） 之 格式化显示  http://www.cnblogs.com/liukemng/p/3748137.html
+
+--SpringMVC学习系列（8） 之 国际化      http://www.cnblogs.com/liukemng/p/3750117.html
+
+-- SpringMVC学习系列（9） 之 实现注解式权限验证  http://www.cnblogs.com/liukemng/p/3751338.html
+
+-- SpringMVC学习系列（11） 之 表单标签  http://www.cnblogs.com/liukemng/p/3754211.html
 
 
 SpringMVC中应用Ajax异步通讯 http://www.cnblogs.com/dennisit/archive/2013/04/25/3043171.html
@@ -51,6 +64,9 @@ SpringMVC配置JSON、JSP、FreeMark多视图解析器配置  http://my.oschina.
  
  druid简单教程  http://www.cnblogs.com/blogsme/archive/2013/05/13/3075308.html
  
+ 
+ MyBatis简介与配置MyBatis+Spring+MySql  http://limingnihao.iteye.com/blog/781671
+ 
 MyBatis 一级和二级缓存    http://www.cnblogs.com/zemliu/p/3239014.html
 
 MyBatis 物理分页    http://www.cnblogs.com/zemliu/p/3242966.html
@@ -65,6 +81,8 @@ springmvc整合redis架构搭建实例 http://www.cnblogs.com/dennisit/p/3614521
 SpringMVC整合Mongodb开发 架构搭建  http://www.cnblogs.com/dennisit/p/3372568.html
 
 SpringMVC整合Mongodb开发,高级操作  http://www.cnblogs.com/dennisit/p/3374297.html
+
+MongoDB学习笔记   http://limingnihao.iteye.com/category/291266
 
 mongodb高级操作及在Java企业级开发中的应用.   http://www.cnblogs.com/dennisit/archive/2013/01/29/2881006.html
 

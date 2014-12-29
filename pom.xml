@@ -318,7 +318,9 @@
 	<build>
 		<finalName>springmvc_mybatis_mysql</finalName>
 		<plugins>
+
 			<plugin>
+				<!-- 指定编译文件的编码 maven-compile-plugin 。如果maven编译时出现乱码，通常这样指定编码后，即可解决 -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -326,6 +328,22 @@
 					<target>1.6</target>
 					<encoding>utf-8</encoding>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<!-- 打包同时生成源码 maven-source-plugin 。http://www.cnblogs.com/yjmyzz/p/4034502.html -->
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<!-- jetty自动部署插件 -->
@@ -370,20 +388,6 @@
 					</execution>
 				</executions>
 
-			</plugin>
-
-			<plugin>
-				<inherited>true</inherited>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 
 		</plugins>
