@@ -52,7 +52,7 @@ public class GlobalController {
         if(!model.containsAttribute("contentModel")){
             
         	//方法2的国际化实现，基于session。
-            /*if(langType.equals("zh")){
+           if(langType.equals("zh")){
                 Locale locale = new Locale("zh", "CN"); 
                 request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale); 
             }
@@ -61,22 +61,24 @@ public class GlobalController {
                 request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale);
             }
             else 
-                request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,LocaleContextHolder.getLocale());*/
-            
+            {
+                request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,LocaleContextHolder.getLocale());
+            }
+                
         	//方法3的国际化实现，基于Cookie。
-            if(langType.equals("zh")){
-                Locale locale = new Locale("zh", "CN"); 
-                //request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale);
-                (new CookieLocaleResolver()).setLocale (request, response, locale);
-            }
-            else if(langType.equals("en")){
-                Locale locale = new Locale("en", "US"); 
-                //request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale);
-                (new CookieLocaleResolver()).setLocale (request, response, locale);
-            }
-            else 
-                //request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,LocaleContextHolder.getLocale());
-                (new CookieLocaleResolver()).setLocale (request, response, LocaleContextHolder.getLocale());
+//            if(langType.equals("zh")){
+//                Locale locale = new Locale("zh", "CN"); 
+//                //request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale);
+//                (new CookieLocaleResolver()).setLocale (request, response, locale);
+//            }
+//            else if(langType.equals("en")){
+//                Locale locale = new Locale("en", "US"); 
+//                //request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale);
+//                (new CookieLocaleResolver()).setLocale (request, response, locale);
+//            }
+//            else 
+//                //request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,LocaleContextHolder.getLocale());
+//                (new CookieLocaleResolver()).setLocale (request, response, LocaleContextHolder.getLocale());
             
             //从后台代码获取国际化信息
             RequestContext requestContext = new RequestContext(request);

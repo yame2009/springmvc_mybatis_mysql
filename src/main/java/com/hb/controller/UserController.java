@@ -26,7 +26,7 @@ import com.hb.service.UserService;
 @RequestMapping(value="/user")
 public class UserController {
 
-	@Autowired(required = true)
+	@Autowired
 	private UserService userService;
 	  
     private Map<String,User> users = new HashMap<String, User>();

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hb.exception.BusinessException;
 import com.hb.exception.SystemException;
+import com.hb.web.auth.AuthPassport;
 
 
 @Controller
@@ -22,9 +23,20 @@ public class WelcomeController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/index.html")
+	@AuthPassport
+	@RequestMapping(value={"/index.html","/hello.html"})
 	public String indexPage() {
 		return "index";
+	}
+	
+	@AuthPassport
+	@RequestMapping(value={"/index","/hello"})
+	public ModelAndView index(){
+	    
+	    ModelAndView modelAndView = new ModelAndView();  
+	    modelAndView.addObject("message", "Hello World!");  
+	    modelAndView.setViewName("index");  
+	    return modelAndView;
 	}
 	
 	/**
