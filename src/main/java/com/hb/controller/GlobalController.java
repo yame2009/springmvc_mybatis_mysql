@@ -29,7 +29,7 @@ public class GlobalController {
      * 跳转到首页视图层
      *
      * @author <a href='mailto:dennisit@163.com'>Cn.pudp(En.dennisit)</a> Copy Right since 2013-10-9 下午12:54:54
-     *                
+     *                http://localhost:8089/smm/global/global.html
      * @param request
      * @param response
      * @return
@@ -40,7 +40,7 @@ public class GlobalController {
     }
     
     /**
-     * 访问地址为：localhost:8080/test/global/test/langType=zh
+     * 访问地址为：localhost:8089/smm/global/test.html?langType=zh
      * @param request
      * @param response
      * @param model
@@ -93,7 +93,7 @@ public class GlobalController {
             
             model.addAttribute("contentModel", formatModel);
         }
-        return "globaltest";
+        return "test/global";
     }
     
     

@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/account")
 public class AccountController {
     
+	/**
+	 * http://localhost:8089/smm/account/login.html
+	 * @return
+	 */
     @RequestMapping(value="/login", method = {RequestMethod.GET})
     public String login(){
         

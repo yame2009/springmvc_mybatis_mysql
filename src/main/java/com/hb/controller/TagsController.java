@@ -22,6 +22,11 @@ import com.hb.models.TagsModel;
 @RequestMapping(value = "/tags")
 public class TagsController {
     
+	/**
+	 * localhost:8089/smm/tags/test.html
+	 * @param model
+	 * @return
+	 */
     @RequestMapping(value="/test", method = {RequestMethod.GET})
     public String test(Model model){
 

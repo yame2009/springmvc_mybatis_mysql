@@ -7,7 +7,8 @@ public class AccountModel implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4835224895952766346L;
+	private static final long serialVersionUID = 548851821013262916L;
+	
 	private String username;
 	private String password;
 	

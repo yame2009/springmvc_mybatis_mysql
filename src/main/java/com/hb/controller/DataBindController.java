@@ -32,7 +32,7 @@ import com.hb.models.AccountModel;
 public class DataBindController {
 
 	/**
-	 * 接口访问地址：http://localhost:8089/test/databind/parambind.html
+	 * 接口访问地址：http://localhost:8089/smm/databind/parambind.html
 	 * @return
 	 */
     @RequestMapping(value="/parambind", method = {RequestMethod.GET})
@@ -64,7 +64,7 @@ public class DataBindController {
     }
     
     /**
-     *  接口访问地址：  http://localhost:8089/test/databind/modelautobind.html
+     *  接口访问地址：  http://localhost:8089/smm/databind/modelautobind.html
      * 
      * 上面我们演示了如何把数据绑定到单个变量，但在实际应用中我们通常需要获取的是model对象，别担心，
      * 我们不需要把数据绑定到一个个变量然后在对model赋值，
@@ -82,17 +82,17 @@ public class DataBindController {
         return "test/modelautobind";
     }
 
-    @RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
-    public String modelAutoBind(HttpServletRequest request, Model model, AccountModel accountModel){
-        
-        model.addAttribute("accountmodel", accountModel);
-        return "test/modelautobindresult";
-    }
+//    @RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
+//    public String modelAutoBind(HttpServletRequest request, Model model, AccountModel accountModel){
+//        
+//        model.addAttribute("accountmodel", accountModel);
+//        return "test/modelautobindresult";
+//    }
     
     @RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
     public String modelAutoBind(HttpServletRequest request, @ModelAttribute("accountmodel") AccountModel accountModel){
         
-        return "modelautobindresult";
+        return "test/modelautobindresult";
     }
     
     /**
@@ -164,7 +164,7 @@ public class DataBindController {
     public String userNameBindPost( @ModelAttribute("sessionaccountmodel") AccountModel accountModel){
         
         //重定向到密码绑定测试
-        return "redirect:passwordbind";
+        return "redirect:test/passwordbind";
     }
 
     @RequestMapping(value="/passwordbind", method = {RequestMethod.GET})

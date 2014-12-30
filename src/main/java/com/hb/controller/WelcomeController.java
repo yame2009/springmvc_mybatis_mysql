@@ -17,6 +17,18 @@ import com.hb.web.auth.AuthPassport;
 
 @Controller
 public class WelcomeController {
+	
+	
+	/**
+	 * jump into the index page
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value={"/"})
+	public String index1() {
+		System.out.println();
+		return "index";
+	}
 
 	/**
 	 * jump into the index page
