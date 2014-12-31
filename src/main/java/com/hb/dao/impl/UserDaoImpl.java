@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao{
         for(int i=0; i<5; i++){
             User user = new User();
             user.setId(i);
-            user.setUsername(UUID.randomUUID().toString().substring(0,8));
+            user.setName(UUID.randomUUID().toString().substring(0,8));
             user.setPassword(UUID.randomUUID().toString().substring(0,15));
             user.setSex(i%2);
             user.setEmail(UUID.randomUUID().toString().substring(0,8)+"@163.com");

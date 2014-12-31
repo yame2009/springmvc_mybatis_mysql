@@ -40,7 +40,7 @@
 	
 	<!-- <import resource="classpath:/config/spring-redis.xml"/> -->
 	
-	<!-- <import resource="classpath:/config/spring-mybatis.xml"/> -->
+	<import resource="classpath:/config/spring-mybatis.xml"/>
 	
 	<!-- <import resource="classpath:/config/app-aop.xml"/> -->
 	

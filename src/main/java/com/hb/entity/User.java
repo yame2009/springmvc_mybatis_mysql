@@ -1,5 +1,7 @@
 package com.hb.entity;
 
+import java.util.Date;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -22,7 +24,7 @@ public class User {
 	private long id;
 	
     @NotNull(message="用户名不能为空")
-    private String username;
+    private String name;
     
     @NotNull(message="密码不能为空")
     @Size(min=4,max=10,message="密码长度必须在4-10的长度")
@@ -34,23 +36,49 @@ public class User {
     @Pattern(regexp="^(1|0)$", message="1表示男，0表示女")
     private int sex;            //1表示男 0表示女
     
+    /**
+     * 年龄
+     */
+    @Pattern(regexp="^([1-9][0-9]{0,2})$", message="年龄填写不正确")
+    private int age;
+    
+    /**
+     * 生日
+     */
+    private Date birthday;
+    
+    /**
+     * 家庭住址
+     */
+    private String address;
+    
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+    
+    /**
+     * 修改时间
+     */
+    private Date modifyTime;
+    
     public User(){
         
     }
     
     public User(String username, String password, String email) {
         super();
-        this.username = username;
+        this.name = username;
         this.password = password;
         this.email = email;
     }
 
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPassword() {
@@ -77,12 +105,6 @@ public class User {
 		this.sex = sex;
 	}
 
-	@Override
-	public String toString() {
-		return "User [username=" + username + ", password=" + password
-				+ ", email=" + email + ", sex=" + sex + "]";
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -90,6 +112,55 @@ public class User {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", password=" + password
+				+ ", email=" + email + ", sex=" + sex + ", age=" + age
+				+ ", birthday=" + birthday + ", address=" + address
+				+ ", createTime=" + createTime + ", modifyTime=" + modifyTime
+				+ "]";
+	}
     
-    
+	
 }

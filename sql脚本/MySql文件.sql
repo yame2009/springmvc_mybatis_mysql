@@ -17,28 +17,31 @@ Date: 2014-11-18 09:31:45
 --SET FOREIGN_KEY_CHECKS=0;
  
 -- ----------------------------
--- Table structure for `userinfo`
+-- Table structure for 'studentinfo'
 -- ----------------------------
-DROP TABLE IF EXISTS `userinfo`;
-CREATE TABLE `userinfo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT '888888',
-  `createTime` datetime DEFAULT NULL,
-  `modifyTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `studentinfo`;
+CREATE TABLE `studentinfo` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`name` VARCHAR(255) NULL DEFAULT NULL COMMENT '名称',
+	 `password` varchar(255) DEFAULT '888888',
+	`age` INT(11) NULL DEFAULT NULL COMMENT '年龄',
+	`birthday` DATETIME NULL DEFAULT NULL  COMMENT '生日',
+	`address` VARCHAR(255) NULL DEFAULT NULL  COMMENT '家庭住址',
+	`sex` varchar(255) DEFAULT '1' COMMENT '1表示男，0表示女',
+  `email` varchar(255) DEFAULT null  COMMENT 'email',
+  `createTime` datetime DEFAULT NULL COMMENT '创建时间',
+  `modifyTime` datetime DEFAULT NULL COMMENT '修改时间',
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=8;
  
 -- ----------------------------
--- Records of userinfo
+-- Records of studentinfo
 -- ----------------------------
-INSERT INTO `userinfo` VALUES ('2', '李四', '22', '2014-11-03 14:28:53', '北京', '888888','2014-11-03 14:28:53','2014-11-03 14:28:53');
-INSERT INTO `userinfo` VALUES ('3', '张三三', '21', '2014-11-15 15:55:33', '北京', '888888','2014-11-15 15:55:33','2014-11-15 15:55:33');
-INSERT INTO `userinfo` VALUES ('4', '李四四', '20', '2014-11-15 16:00:40', '北京', '888888','2014-11-15 15:55:33','2014-11-15 15:55:33');
-INSERT INTO `userinfo` VALUES ('5', '王五', '20', '2014-11-15 16:02:41', '北京', '888888','2014-11-15 15:55:33','2014-11-15 15:55:33');
-INSERT INTO `userinfo` VALUES ('7', '测试', '19', '2014-11-15 16:54:05', '北京', '888888','2014-11-15 15:55:33','2014-11-15 15:55:33');
-
-
+INSERT INTO `studentinfo` VALUES ('2', '李四','888888', '22', '2014-11-03 14:28:53', '北京', '1','','2014-11-03 14:28:53','2014-11-03 14:28:53');
+INSERT INTO `studentinfo` VALUES ('3', '张三三','888888', '21', '2014-11-15 15:55:33', '北京', '1','','2014-11-15 15:55:33','2014-11-15 15:55:33');
+INSERT INTO `studentinfo` VALUES ('4', '李四四','888888', '20', '2014-11-15 16:00:40', '北京', '1','','2014-11-15 15:55:33','2014-11-15 15:55:33');
+INSERT INTO `studentinfo` VALUES ('5', '王五', '888888','20', '2014-11-15 16:02:41', '北京', '1','','2014-11-15 15:55:33','2014-11-15 15:55:33');
+INSERT INTO `studentinfo` VALUES ('7', '测试','888888', '19', '2014-11-15 16:54:05', '北京', '1','','2014-11-15 15:55:33','2014-11-15 15:55:33');

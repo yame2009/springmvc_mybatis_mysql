@@ -97,7 +97,7 @@ public class UserController {
         if(br.hasErrors()){        //如果有错误,直接跳转到添加视图
             return "user/add";            //服务端跳转 该跳转会自动在前面增加 forward
         }
-        users.put(user.getUsername(), user);
+        users.put(user.getName(), user);
         return "redirect:/user/users";    //客户端跳转 使用 redirect
     }
     
