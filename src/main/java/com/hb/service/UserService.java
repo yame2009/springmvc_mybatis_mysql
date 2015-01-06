@@ -2,7 +2,7 @@ package com.hb.service;
 
 import java.util.List;
 
-import com.hb.entity.User;
+import com.hb.entity.StudentInfoEntity;
 
 /**
  *  @version ： 1.0
@@ -13,16 +13,16 @@ import com.hb.entity.User;
 
 public interface UserService {
 
-    public int insert(User user);
+    public int insert(StudentInfoEntity user);
     
-    public int delete(User user);
+    public int delete(StudentInfoEntity user);
     
     public int countAll();
     
-    public List<User> selectAll();
+    public List<StudentInfoEntity> selectAll();
     
-    public int update(User user);
+    public int update(StudentInfoEntity user);
     
-    public User detail(long id);
+    public StudentInfoEntity detail(long id);
     
 }

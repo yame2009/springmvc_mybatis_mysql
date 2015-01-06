@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
  *  TODO     : 
  *
  */
-public class User {
+public class StudentInfoEntity {
     
 	private long id;
 	
@@ -62,11 +62,11 @@ public class User {
      */
     private Date modifyTime;
     
-    public User(){
+    public StudentInfoEntity(){
         
     }
     
-    public User(String username, String password, String email) {
+    public StudentInfoEntity(String username, String password, String email) {
         super();
         this.name = username;
         this.password = password;
