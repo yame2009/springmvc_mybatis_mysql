@@ -19,6 +19,7 @@
 		<!-- log4j日志文件管理包版本 -->
 		<slf4j.version>1.7.9</slf4j.version>
 		<logback.version>1.1.2</logback.version>
+		<mysql.version>5.1.26</mysql.version>
 	</properties>
 
 	<!-- 公司的内部的maven下载库 -->
@@ -144,12 +145,28 @@
 			<artifactId>mybatis</artifactId>
 			<version>${mybatis.version}</version>
 		</dependency>
+		<!--分页插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>3.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<!--通用Mapper -->
 		<dependency>
 			<groupId>com.github.abel533</groupId>
 			<artifactId>mapper</artifactId>
 			<!-- 1.1.0是版本号，推荐使用最新版 -->
 			<version>1.1.0</version>
 		</dependency>
+		<!-- github上有一个专门针对mybatis的物理分页开源项目：mybatis-paginator(https://github.com/miemiedev/mybatis-paginator)， 
+			兼容目前绝大多数主流数据库，十分好用. -->
+		<!-- <dependency> <groupId>com.github.miemiedev</groupId> <artifactId>mybatis-paginator</artifactId> 
+			<version>1.2.15</version> </dependency> -->
 
 		<!-- mybatis/spring包 -->
 		<dependency>
@@ -161,7 +178,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.26</version>
+			<version>${mysql.version}</version>
 		</dependency>
 		<!-- junit测试包 -->
 		<dependency>
@@ -303,20 +320,19 @@
 			<version>18.0</version>
 		</dependency>
 
-		<!-- github上有一个专门针对mybatis的物理分页开源项目：mybatis-paginator(https://github.com/miemiedev/mybatis-paginator)， 
-			兼容目前绝大多数主流数据库，十分好用. -->
-		<dependency>
-			<groupId>com.github.miemiedev</groupId>
-			<artifactId>mybatis-paginator</artifactId>
-			<version>1.2.15</version>
-		</dependency>
-
 		<!-- Joda 是一种令人惊奇的高效工具。 无论您是计算日期、打印日期，或是解析日期，Joda 都将是工具箱中的便捷工具。 在本文中，我首先介绍了 
 			Joda，它可以作为 JDK 日期/时间库的替代选择。 然后介绍了一些 Joda 概念，以及如何使用 Joda 执行日期计算和格式化。 -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.5</version>
+		</dependency>
+		
+		<!-- spring-oxm依赖 -->
+		<dependency>
+			<groupId>org.codehaus.castor</groupId>
+			<artifactId>castor-xml</artifactId>
+			<version>1.3.3</version>
 		</dependency>
 
 

@@ -41,9 +41,9 @@
 
 --SpringMVC学习系列（8） 之 国际化      http://www.cnblogs.com/liukemng/p/3750117.html
 
--- SpringMVC学习系列（9） 之 实现注解式权限验证  http://www.cnblogs.com/liukemng/p/3751338.html
+--SpringMVC学习系列（9） 之 实现注解式权限验证  http://www.cnblogs.com/liukemng/p/3751338.html
 
--- SpringMVC学习系列（11） 之 表单标签  http://www.cnblogs.com/liukemng/p/3754211.html
+--SpringMVC学习系列（11） 之 表单标签  http://www.cnblogs.com/liukemng/p/3754211.html
 
 
 SpringMVC中应用Ajax异步通讯 http://www.cnblogs.com/dennisit/archive/2013/04/25/3043171.html
@@ -60,7 +60,20 @@ SpringMVC中使用Interceptor拦截器   http://haohaoxuexi.iteye.com/blog/17506
 
 SpringMVC配置JSON、JSP、FreeMark多视图解析器配置  http://my.oschina.net/u/1859292/blog/309812
 
- Spring + mybatis整合方案总结 结合实例应用 http://www.cnblogs.com/dennisit/archive/2013/04/10/3012972.html
+--Spring + mybatis整合方案总结 结合实例应用 http://www.cnblogs.com/dennisit/archive/2013/04/10/3012972.html
+ 
+ Mybatis通用Mapper 极其方便的使用Mybatis单表的增删改查  http://git.oschina.net/free/Mapper
+ 如何开发自己的通用Mapper    http://git.oschina.net/free/Mapper/blob/master/HowToExtendMapper.md
+ 
+ Mybatis工具SqlHelper - 获取Mybatis方法的Sql  http://blog.csdn.net/isea533/article/details/40044417
+ 
+ 推荐使用Mybatis分页插件:PageHelper分页插件  https://github.com/pagehelper/Mybatis-PageHelper ,  http://git.oschina.net/free/Mybatis_PageHelper
+
+ 
+ 
+ SSM集成的基础项目，项目使用Maven管理   https://github.com/abel533/Mybatis-Spring/tree/spring4
+ 
+ 
  
  druid简单教程  http://www.cnblogs.com/blogsme/archive/2013/05/13/3075308.html
  
@@ -69,7 +82,6 @@ SpringMVC配置JSON、JSP、FreeMark多视图解析器配置  http://my.oschina.
  
 MyBatis 一级和二级缓存    http://www.cnblogs.com/zemliu/p/3239014.html
 
-MyBatis 物理分页    http://www.cnblogs.com/zemliu/p/3242966.html
 
 
 利用MyBatis的动态SQL特性抽象统一SQL查询接口  http://www.cnblogs.com/zemliu/p/3248171.html
@@ -99,6 +111,6 @@ CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/36
 
 
 
-
-
+中国行政区划代码数据库文件 - 最新县及县以上行政区划代码（截止2012年10月31日）
+http://blog.csdn.net/isea533/article/details/9140313
 
