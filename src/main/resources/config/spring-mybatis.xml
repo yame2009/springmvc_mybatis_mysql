@@ -14,7 +14,23 @@
     http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+  <!--   <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd"> -->
 
+  <context:component-scan base-package="com.hb.service"/>
+  
+	<!-- 读取属性文件 -->
 	<context:property-placeholder location="classpath:config/jdbc.properties" />
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
@@ -56,50 +72,52 @@
 		<property name="filters" value="stat" />
 	</bean>
 
-	<!-- 配置方法一 ： mybatis文件配置，扫描所有mapper文件,（configLocation为mybatis属性 mapperLocations为所有mapper） -->
-	<!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" 
-		p:dataSource-ref="dataSource" p:configLocation="classpath:config/mybatis-config.xml" 
-		p:mapperLocations="classpath:mapper/*.xml"/> -->
 
-	<!-- 配置方法二， mybatis文件配置，扫描所有mapper文件 -->
+	<!-- mybatis文件配置，扫描所有mapper文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:config/mybatis-config.xml"></property>
-		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
-		<!-- <property name="typeAliasesPackage" value="com.hb.redis.model" /> -->
+		<!-- <property name="configLocation" value="classpath:config/mybatis-config.xml"></property> -->
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:${mapper.Mapper}</value>
+				<value>classpath:mapper/*.xml</value>
+			</array>
+		</property>
+		<property name="typeAliasesPackage" value="com.hb.models" />
 		<property name="plugins">
-			<list>
-				<bean
-					class="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
-					<property name="dialectClass"
-						value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"></property>
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+							reasonable=true
+						</value>
+					</property>
 				</bean>
-			</list>
+			</array>
 		</property>
 	</bean>
 
-
+	<!-- spring与mybatis整合配置，扫描所有mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.hb.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
-	<!-- spring与mybatis整合配置，扫描所有dao -->
-	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="cn.springmvc.dao" 
-		p:sqlSessionFactoryBeanName="sqlSessionFactory" /> -->
 
-	<!-- 对数据源进行事务管理 -->
-	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
-		p:dataSource-ref="dataSource" /> -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+		scope="prototype">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<aop:aspectj-autoproxy />
+
 
 	<!-- 对数据源进行事务管理,配置事务管理器 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
-	<!-- 注解方式配置事物 -->
-	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
 
 	<!-- 拦截器方式配置事物 -->
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
@@ -129,17 +147,35 @@
 			<tx:method name="*" propagation="SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
-	<aop:config>
+	
+   <!-- <aop:config>
 		<aop:pointcut id="transactionPointcut"
 			expression="execution(* 
 		cn.hb.service..*Impl.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut"
 			advice-ref="transactionAdvice" />
+	</aop:config>  -->
+	<aop:config>
+		<aop:pointcut id="appService"
+			expression="execution(* com.hb.service..*Service*.*(..))" />
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="appService" />
 	</aop:config>
 
 
+	<bean class="com.github.abel533.mapperhelper.MapperHelper"
+		depends-on="sqlSession" init-method="initMapper" scope="singleton"
+		lazy-init="false">
+		<property name="mappers">
+			<array>
+				<value>${mapper.Mapper}</value>
+			</array>
+		</property>
+		<property name="sqlSessions" ref="sqlSession" />
+	</bean>
+
+
 	<!-- 配置druid监控spring jdbc -->
-	<bean id="druid-stat-interceptor"
+	<!-- <bean id="druid-stat-interceptor"
 		class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
 	</bean>
 	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut"
@@ -153,7 +189,7 @@
 	<aop:config>
 		<aop:advisor advice-ref="druid-stat-interceptor"
 			pointcut-ref="druid-stat-pointcut" />
-	</aop:config>
+	</aop:config> -->
 
 
 </beans>

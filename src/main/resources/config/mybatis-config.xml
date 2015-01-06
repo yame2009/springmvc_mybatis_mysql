@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
         <!-- 命名空间 -->
     <typeAliases>
-         <typeAlias alias="User" type="com.hb.models.User"/> 
-         <typeAlias alias="UserPage" type="com.hb.models.UserPage"/> 
+         <typeAlias alias="studentInfo" type="com.hb.mapper.studentinfoMapper"/> 
+         <!-- <typeAlias alias="UserPage" type="com.hb.models.UserPage"/>  -->
     </typeAliases>
 
     <!-- 映射map -->

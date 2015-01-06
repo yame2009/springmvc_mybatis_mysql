@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hb.dao.UserDao;
-import com.hb.entity.User;
+import com.hb.entity.StudentInfoEntity;
 import com.hb.service.UserService;
 
 /**
@@ -28,27 +28,27 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int delete(User user) {
+    public int delete(StudentInfoEntity user) {
         return this.userDao.delete(user);
     }
 
     @Override
-    public int insert(User user) {
+    public int insert(StudentInfoEntity user) {
         return this.userDao.insert(user);
     }
 
     @Override
-    public List<User> selectAll() {
+    public List<StudentInfoEntity> selectAll() {
         return this.userDao.selectAll();
     }
 
     @Override
-    public int update(User user) {
+    public int update(StudentInfoEntity user) {
         return this.userDao.update(user);
     }
 
     @Override
-    public User detail(long id) {
+    public StudentInfoEntity detail(long id) {
         return this.userDao.detail(id);
     }
 

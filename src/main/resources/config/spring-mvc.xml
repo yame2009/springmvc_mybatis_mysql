@@ -121,8 +121,12 @@
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 
 		<!-- 其中basename用来指定properties文件的通用名 如实例中的messages_en.properties,messages_ja.properties通用名都是messages -->
-		<!-- <property name="basename" value="classpath:i18n/messages" /> -->
-		<property name="basename" value="messages" />
+		<!-- <property name="basename" value="messages" /> -->
+		<property name="basenames">
+			<list>
+				<value>i18n.messages</value>
+			</list>
+		</property>
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="useCodeAsDefaultMessage" value="true" />
 
@@ -154,20 +158,11 @@
 
 
 	<!--multipartResolver 支持分段文件上传 使用时form需要加上enctype="multipart/form-data"属性,且form的method设置为POST -->
-	<!-- <bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="defaultEncoding">
-			<value>UTF-8</value>
-		</property>
-		<property name="maxUploadSize">
-			<value>32505856</value>
-			上传文件大小限制为31M，31*1024*1024
-		</property>
-		<property name="maxInMemorySize">
-			<value>4096</value>
-		</property>
-		<property name="defaultEncoding" value="UTF-8" />
-	</bean> -->
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+		<property name="defaultEncoding"> <value>UTF-8</value> </property> <property 
+		name="maxUploadSize"> <value>32505856</value> 上传文件大小限制为31M，31*1024*1024 </property> 
+		<property name="maxInMemorySize"> <value>4096</value> </property> <property 
+		name="defaultEncoding" value="UTF-8" /> </bean> -->
 
 
 
