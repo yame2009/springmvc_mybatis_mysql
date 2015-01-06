@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.hb.entity.User;
+import com.hb.entity.StudentInfoEntity;
 import com.hb.service.UserService;
 
 /**
@@ -29,11 +29,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	  
-    private Map<String,User> users = new HashMap<String, User>();
+    private Map<String,StudentInfoEntity> users = new HashMap<String, StudentInfoEntity>();
     
   //@RequestMapping("/user.html")是说明这个方法处理user.do这个请求
     @RequestMapping(value="/insert.html")
-    public String insert(ModelMap modelMap, User user){
+    public String insert(ModelMap modelMap, StudentInfoEntity user){
         return "";
     }
     
@@ -45,10 +45,10 @@ public class UserController {
     }
     
     public UserController(){
-        users.put("suruonian", new User("suruonian","suruonian","suruonian@demo.com"));
-        users.put("linyunxi", new User("linyunxi","linyunxi","linyunxi@163.com"));
-        users.put("dennisit", new User("dennisit","dennisit","dennisit@163.com"));
-        users.put("moshaobai", new User("moshaobai","bing_he","1325103287@qq.com"));
+        users.put("suruonian", new StudentInfoEntity("suruonian","suruonian","suruonian@demo.com"));
+        users.put("linyunxi", new StudentInfoEntity("linyunxi","linyunxi","linyunxi@163.com"));
+        users.put("dennisit", new StudentInfoEntity("dennisit","dennisit","dennisit@163.com"));
+        users.put("moshaobai", new StudentInfoEntity("moshaobai","bing_he","1325103287@qq.com"));
     }
     
     /**
@@ -77,7 +77,7 @@ public class UserController {
      */
     @RequestMapping(value="/add",method=RequestMethod.GET)
     public String add(Model model){
-        model.addAttribute("user",new User());    //开启ModelDriven 跳转到增加页面时使用该Model
+        model.addAttribute("user",new StudentInfoEntity());    //开启ModelDriven 跳转到增加页面时使用该Model
         return "user/add";
     }
     
@@ -92,7 +92,7 @@ public class UserController {
      *
      */
     @RequestMapping(value="/add",method=RequestMethod.POST)
-    public String add(@Validated User user,BindingResult br){
+    public String add(@Validated StudentInfoEntity user,BindingResult br){
         //需要说明的是BindingResult形参一定要跟@Validated修饰的形参后面写验证
         if(br.hasErrors()){        //如果有错误,直接跳转到添加视图
             return "user/add";            //服务端跳转 该跳转会自动在前面增加 forward
@@ -147,7 +147,7 @@ public class UserController {
      *
      */
     @RequestMapping(value="/{username}/update",method=RequestMethod.POST)
-    public String update(@PathVariable String username, @Validated User user,BindingResult br){
+    public String update(@PathVariable String username, @Validated StudentInfoEntity user,BindingResult br){
         if(br.hasErrors()){        //如果有错误,直接跳转到修改视图
             return "user/update";
         }

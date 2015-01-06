@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Repository;
 
 import com.hb.dao.UserDao;
-import com.hb.entity.User;
+import com.hb.entity.StudentInfoEntity;
 
 /**
  *  @version ： 1.0
@@ -25,20 +25,20 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public int delete(User user) {
+    public int delete(StudentInfoEntity user) {
         // TODO Auto-generated method stub
         return 0;
     }
 
-    public int insert(User user) {
+    public int insert(StudentInfoEntity user) {
         // TODO Auto-generated method stub
         return 0;
     }
 
-    public List<User> selectAll() {
-        List<User> list = new ArrayList<User>();
+    public List<StudentInfoEntity> selectAll() {
+        List<StudentInfoEntity> list = new ArrayList<StudentInfoEntity>();
         for(int i=0; i<5; i++){
-            User user = new User();
+            StudentInfoEntity user = new StudentInfoEntity();
             user.setId(i);
             user.setName(UUID.randomUUID().toString().substring(0,8));
             user.setPassword(UUID.randomUUID().toString().substring(0,15));
@@ -49,12 +49,12 @@ public class UserDaoImpl implements UserDao{
         return list;
     }
 
-    public int update(User user) {
+    public int update(StudentInfoEntity user) {
         // TODO Auto-generated method stub
         return 0;
     }
 
-    public User detail(long id) {
+    public StudentInfoEntity detail(long id) {
         // TODO Auto-generated method stub
         return null;
     }
