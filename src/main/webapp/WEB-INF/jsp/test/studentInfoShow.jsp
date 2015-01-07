@@ -7,18 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-    用户名：${studentInfo.username}<br/>
+    用户名：${studentInfo.name}<br/>
     密 码：${studentInfo.password}<br/>
     生日：${studentInfo.birthday}<br/>
     
+    
     <br/>
     <br/>
-     用户名:<br/>
-    <spring:eval expression="studentInfo.username></spring:eval><br/>
-    密 码:<br/>
-    <spring:eval expression="studentInfo.password"></spring:eval><br/>
-     生日日期:<br/>
-    <spring:eval expression="studentInfo.birthday"></spring:eval><br/>
+    spring:eval 用户名:<spring:eval expression="studentInfo.name"></spring:eval><br/>
+    spring:eval 密 码:<spring:eval expression="studentInfo.password"></spring:eval><br/>
+    spring:eval 生日日期:<spring:eval expression="studentInfo.birthday"></spring:eval><br/>
     
 </body>
 </html>

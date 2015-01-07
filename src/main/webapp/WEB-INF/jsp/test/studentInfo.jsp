@@ -12,6 +12,7 @@
 <body>
     <form:form modelAttribute="studentInfo" method="post">     
         用户名：<form:input path="name"/><br/>
+        密码：<form:input path="password"/><br/>
         <input type="submit" value="Submit" />
     </form:form>  
 </body>
