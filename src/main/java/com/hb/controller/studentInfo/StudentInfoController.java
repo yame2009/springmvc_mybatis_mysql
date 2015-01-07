@@ -1,5 +1,9 @@
 package com.hb.controller.studentInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.hb.models.StudentInfo;
 import com.hb.service.StudentInfoService;
 
@@ -21,7 +26,11 @@ import com.hb.service.StudentInfoService;
 @Controller
 @RequestMapping(value = "/student")
 public class StudentInfoController {
-
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger logger = LoggerFactory.getLogger(StudentInfoController.class);
+	
     @Autowired
     private StudentInfoService studentInfoService;
 
@@ -29,8 +38,8 @@ public class StudentInfoController {
     public String modelAutoBind(HttpServletRequest request, Model model){
     	StudentInfo studentInfo = new StudentInfo();
     	studentInfo.setBirthday(new Date());
-    	studentInfo.setName("张三");
-    	studentInfo.setPassword("123");
+    	studentInfo.setName("张三三");
+    	studentInfo.setPassword("***");
     	model.addAttribute("studentInfo", studentInfo);
         return "test/studentInfo";
     }
@@ -38,12 +47,15 @@ public class StudentInfoController {
     @RequestMapping(value="/test", method = {RequestMethod.POST})
     public String test(HttpServletRequest request, Model model, StudentInfo studentInfo) throws NoSuchFieldException, SecurityException{
 
-        if(!model.containsAttribute("studentInfo")){
+        if(model.containsAttribute("studentInfo")){
         	
         	studentInfo = studentInfoService.query(studentInfo);
+        	
+        	logger.debug("studentInfo 数据： ", studentInfo);
             
             model.addAttribute("studentInfo", studentInfo);
          
+            
         }
         return "test/studentInfoShow";
     }
