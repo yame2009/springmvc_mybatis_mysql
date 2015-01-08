@@ -102,6 +102,8 @@ mongodb管理与安全认证    http://www.cnblogs.com/dennisit/archive/2013/02/
 
 mongodb性能优化    http://www.cnblogs.com/dennisit/archive/2013/01/27/2879017.html
 
+MongoDB与Jackson JSON结合实现接口敏捷开发 http://blog.csdn.net/chaijunkun/article/details/7263804
+
 
 CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/3649964.html
 

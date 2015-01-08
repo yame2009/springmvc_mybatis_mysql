@@ -20,6 +20,7 @@
 		<slf4j.version>1.7.9</slf4j.version>
 		<logback.version>1.1.2</logback.version>
 		<mysql.version>5.1.26</mysql.version>
+		<zxing.version>3.1.0</zxing.version>
 	</properties>
 
 	<!-- 公司的内部的maven下载库 -->
@@ -359,12 +360,29 @@
 			<version>1.3.1</version>
 		</dependency>
 
-		<!-- 生成条形码的工具包 http://blog.csdn.net/jason5186/article/details/38980379 -->
-		<!-- <dependency>  
-            <groupId>org.jbarcode</groupId>  
-            <artifactId>jbarcode</artifactId>  
-            <version>0.2.8</version>  
-        </dependency> -->
+		<!-- 生成条形码的工具包 http://barcode4j.sourceforge.net/examples.html -->
+		<!-- <dependency> <groupId>net.sf.barcode4j</groupId> <artifactId>barcode4j</artifactId> 
+			<version>2.1</version> </dependency> -->
+
+		<!-- 获取主机信息，如内存，CPU，网络情况等等 -->
+		<dependency>
+			<groupId>org.fusesource</groupId>
+			<artifactId>sigar</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
+		<!-- ZXing是一个开放源码的，用Java实现的多种格式的1D/2D条码图像处理库，它包含了联系到其他语言的端口。 Zxing可以实现使用手机的内置的摄像头完成条形码的扫描及解码。该项目可实现的条形码编码和解码 -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+		
 
 	</dependencies>
 
