@@ -1,6 +1,10 @@
 package com.hb.util.commonUtil;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -31,10 +35,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 
-
 /**
  * 
- *  类名称：StringUtil
+ * 类名称：StringUtil
+ * 
  * @date 2014-11-15 下午4:36:20 备注：
  */
 public class StringUtil extends StringUtils {
@@ -46,7 +50,11 @@ public class StringUtil extends StringUtils {
 		System.out.println(Integer.MAX_VALUE);
 	}
 
-	// 将汉字转换为全拼
+	/**
+	 * 将汉字转换为全拼
+	 * @param src
+	 * @return
+	 */
 	public static String getPingYin(String src) {
 
 		char[] t1 = null;
@@ -76,7 +84,11 @@ public class StringUtil extends StringUtils {
 		return t4;
 	}
 
-	// 返回中文的首字母
+	/**
+	 *  返回中文的首字母
+	 * @param str
+	 * @return
+	 */
 	public static String getPinYinHeadChar(String str) {
 		String temp = "";
 		String demo = "";
@@ -99,7 +111,11 @@ public class StringUtil extends StringUtils {
 		return demo;
 	}
 
-	// 将字符串转移为ASCII码
+	/**
+	 *  将字符串转移为ASCII码
+	 * @param cnStr
+	 * @return
+	 */
 	public static String getCnASCII(String cnStr) {
 		StringBuffer strBuf = new StringBuffer();
 		byte[] bGBK = cnStr.getBytes();
@@ -884,4 +900,44 @@ public class StringUtil extends StringUtils {
 		}
 		return r;
 	}
+
+	/**
+	 * 将字符串转为输入流
+	 * @param sInputString
+	 * @return
+	 */
+	public static InputStream getStringStream(String sInputString) {
+		if (sInputString != null && !sInputString.trim().equals("")) {
+			try {
+				ByteArrayInputStream tInputStringStream = new ByteArrayInputStream(
+						sInputString.getBytes());
+				return tInputStringStream;
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 将一个输入流转化为字符串
+	 */
+	public static String getStreamString(InputStream tInputStream) {
+		if (tInputStream != null) {
+			try {
+				BufferedReader tBufferedReader = new BufferedReader(
+						new InputStreamReader(tInputStream));
+				StringBuffer tStringBuffer = new StringBuffer();
+				String sTempOneLine = new String("");
+				while ((sTempOneLine = tBufferedReader.readLine()) != null) {
+					tStringBuffer.append(sTempOneLine);
+				}
+				return tStringBuffer.toString();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		return null;
+	}
+
 }

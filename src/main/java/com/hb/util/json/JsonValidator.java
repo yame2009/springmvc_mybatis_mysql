@@ -1,4 +1,4 @@
-package com.hb.util.commonUtil;
+package com.hb.util.json;
 
 /**
  * Project Name:v3a-b2c
@@ -303,26 +303,32 @@ public class JsonValidator {
      */
     public static boolean check(String checkString) {
         boolean flag = true;
-        switch (checkString) {
-        case "{":
-            flag = false;
-            break;
-        case "}":
-            flag = false;
-            break;
-        case "[":
-            flag = false;
-            break;
-        case ",":
-            flag = false;
-            break;
-        case ":":
-            flag = false;
-            break;
-        case "\"":
-            flag = true;
-            break;
+        
+        if("{".equals(checkString))
+        {
+        	flag = false;
         }
+        else if("}".equals(checkString))
+        {
+        	 flag = false;
+        }
+        else if("[".equals(checkString))
+        {
+        	 flag = false;
+        }
+        else if(",".equals(checkString))
+        {
+        	 flag = false;
+        }
+        else if(":".equals(checkString))
+        {
+        	 flag = false;
+        }
+        else if("\\".equals(checkString))
+        {
+        	 flag = true;
+        }
+        
         return flag;
     }
 }

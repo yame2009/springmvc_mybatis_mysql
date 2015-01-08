@@ -1,4 +1,4 @@
-package com.hb.util.commonUtil;
+package com.hb.util.json;
 
 /**
  * Copyright 2010 Fuchun.
@@ -73,8 +73,8 @@ import org.apache.commons.lang.StringUtils;
  * @since ay-commons-lang 1.0 ， http://www.oschina.net/code/piece_full?code=611
  * @version 1.1.0
  */
-public class JSONUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JSONUtils.class);
+public class GsonJSONUtils {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GsonJSONUtils.class);
  
     /** 空的 {@code JSON} 数据 - <code>"{}"</code>。 */
     public static final String EMPTY_JSON = "{}";
@@ -112,7 +112,7 @@ public class JSONUtils {
      * This constructor is public to permit tools that require a JavaBean instance to operate.
      * </p>
      */
-    public JSONUtils() {
+    public GsonJSONUtils() {
         super();
     }
  
