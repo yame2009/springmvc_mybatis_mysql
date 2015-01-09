@@ -88,6 +88,9 @@ MyBatis 一级和二级缓存    http://www.cnblogs.com/zemliu/p/3239014.html
 
 springmvc整合redis架构搭建实例 http://www.cnblogs.com/dennisit/p/3614521.html
 
+SpringMVC整合Shiro   http://blog.csdn.net/jadyer/article/details/12208847#comments
+
+Apache Shiro 使用手册（一）Shiro架构介绍  http://kdboy.iteye.com/blog/1154644
 
 
 SpringMVC整合Mongodb开发 架构搭建  http://www.cnblogs.com/dennisit/p/3372568.html
@@ -106,6 +109,7 @@ MongoDB与Jackson JSON结合实现接口敏捷开发 http://blog.csdn.net/chaiju
 
 
 CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/3649964.html
+
 
 
 
