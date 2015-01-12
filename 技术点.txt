@@ -73,6 +73,8 @@ SpringMVC配置JSON、JSP、FreeMark多视图解析器配置  http://my.oschina.
  
  SSM集成的基础项目，项目使用Maven管理   https://github.com/abel533/Mybatis-Spring/tree/spring4
  
+ 利用 org.apache.commons.io.FileUtils快速读写文件 http://my.oschina.net/15231182322/blog/347517
+ 
  
  
  druid简单教程  http://www.cnblogs.com/blogsme/archive/2013/05/13/3075308.html
@@ -86,7 +88,12 @@ MyBatis 一级和二级缓存    http://www.cnblogs.com/zemliu/p/3239014.html
 
 利用MyBatis的动态SQL特性抽象统一SQL查询接口  http://www.cnblogs.com/zemliu/p/3248171.html
 
+
 springmvc整合redis架构搭建实例 http://www.cnblogs.com/dennisit/p/3614521.html
+
+jedis基本介绍 http://my.oschina.net/boomya/blog/68375
+
+
 
 SpringMVC整合Shiro   http://blog.csdn.net/jadyer/article/details/12208847#comments
 
@@ -110,6 +117,14 @@ MongoDB与Jackson JSON结合实现接口敏捷开发 http://blog.csdn.net/chaiju
 
 CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/3649964.html
 
+使用Spring+Maven配置Netty4   http://my.oschina.net/boomya/blog/139464
+
+
+
+
+Netty那点事（一）概述  http://my.oschina.net/flashsword/blog/162936
+
+ netty4.0研究之一  http://my.oschina.net/u/1384382/blog/170229
 
 
 
@@ -119,4 +134,12 @@ CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/36
 
 中国行政区划代码数据库文件 - 最新县及县以上行政区划代码（截止2012年10月31日）
 http://blog.csdn.net/isea533/article/details/9140313
+
+
+
+
+
+
+
+
 
