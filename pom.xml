@@ -150,13 +150,14 @@
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
-			<version>3.4.2</version>
+			<version>3.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.jsqlparser</groupId>
 			<artifactId>jsqlparser</artifactId>
 			<version>0.9.1</version>
 		</dependency>
+		
 		<!--通用Mapper -->
 		<dependency>
 			<groupId>com.github.abel533</groupId>

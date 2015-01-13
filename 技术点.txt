@@ -75,6 +75,7 @@ SpringMVC配置JSON、JSP、FreeMark多视图解析器配置  http://my.oschina.
  
  利用 org.apache.commons.io.FileUtils快速读写文件 http://my.oschina.net/15231182322/blog/347517
  
+ Jackson VS FastJson VS Gson ( java Json 序列化与反序列化) http://my.oschina.net/zuiwoxing/blog/354860
  
  
  druid简单教程  http://www.cnblogs.com/blogsme/archive/2013/05/13/3075308.html
@@ -83,7 +84,7 @@ SpringMVC配置JSON、JSP、FreeMark多视图解析器配置  http://my.oschina.
  MyBatis简介与配置MyBatis+Spring+MySql  http://limingnihao.iteye.com/blog/781671
  
 MyBatis 一级和二级缓存    http://www.cnblogs.com/zemliu/p/3239014.html
-
+两级缓存框架 ehcache + redis (memcached)  http://git.oschina.net/ld/J2Cache
 
 
 利用MyBatis的动态SQL特性抽象统一SQL查询接口  http://www.cnblogs.com/zemliu/p/3248171.html
