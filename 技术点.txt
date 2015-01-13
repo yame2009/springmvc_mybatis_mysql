@@ -77,15 +77,17 @@ SpringMVC配置JSON、JSP、FreeMark多视图解析器配置  http://my.oschina.
  
  Jackson VS FastJson VS Gson ( java Json 序列化与反序列化) http://my.oschina.net/zuiwoxing/blog/354860
  
+ Jackson 框架，轻易转换JSON  http://www.cnblogs.com/hoojo/archive/2011/04/22/2024628.html
+ 
  Java将对象保存到文件中/从文件中读取对象(java序列化对象流)  http://www.cnblogs.com/hrlnw/p/3617478.html
  
- JAXB之HelloWorld.入门小DEMO.    http://my.oschina.net/zhaoqian/blog/89763
- Jaxb 完全手册（将XML实例文档反向生成Java对象树的方法，并能将Java对象树的内容重新写到XML实例文档） 
-    http://my.oschina.net/zhaoqian/blog/179334
+ --JAXB之HelloWorld.入门小DEMO.    http://my.oschina.net/zhaoqian/blog/89763
+-- Jaxb 完全手册（将XML实例文档反向生成Java对象树的方法，并能将Java对象树的内容重新写到XML实例文档） 
+--    http://my.oschina.net/zhaoqian/blog/179334
  
  
 java 利用Xstream注解生成java object和解析xml  http://www.oschina.net/code/snippet_116183_14202
- 
+ xStream完美转换XML、JSON  http://www.cnblogs.com/hoojo/archive/2011/04/22/2025197.html
  
  
  

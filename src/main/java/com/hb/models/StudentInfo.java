@@ -101,6 +101,8 @@ public class StudentInfo {
 	/**
 	 *  创建时间
 	 * 基于注解的格式化
+	 * @XmlElement(name = "TransactionTime", required = true)，@XmlSchemaType ，@XmlJavaTypeAdapter
+	 *  在某个类中如下使用,解析出对应的时间格式.必须重载那2个方法,用于JAXB marshal xml,xml unmarshal object时候使用
 	 */
     @XmlElement//(name = "TransactionTime", required = true)
     @XmlSchemaType(name = "dateTime")
