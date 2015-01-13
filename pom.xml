@@ -157,7 +157,7 @@
 			<artifactId>jsqlparser</artifactId>
 			<version>0.9.1</version>
 		</dependency>
-		
+
 		<!--通用Mapper -->
 		<dependency>
 			<groupId>com.github.abel533</groupId>
@@ -343,17 +343,10 @@
 			<version>2.0.1</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-c3p0</artifactId>
-			<version>4.3.7.Final</version>
-		</dependency>
-		<!-- Commons -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
+		<!-- hibernate 数据源依赖包 -->
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-c3p0</artifactId> 
+			<version>4.3.7.Final</version> </dependency> Commons <dependency> <groupId>commons-dbcp</groupId> 
+			<artifactId>commons-dbcp</artifactId> <version>1.4</version> </dependency> -->
 		<!-- 上传文件 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -383,7 +376,13 @@
 			<artifactId>javase</artifactId>
 			<version>${zxing.version}</version>
 		</dependency>
-		
+
+		<!-- xStream可以轻易的将Java对象和xml文档相互转换 -->
+		<dependency>
+			<groupId>xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.2.2</version>
+		</dependency>
 
 	</dependencies>
 
