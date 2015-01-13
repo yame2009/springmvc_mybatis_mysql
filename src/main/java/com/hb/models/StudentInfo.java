@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.hb.util.ObjectData.DateAdapter.DateAdapter;
+import com.hb.util.ObjectData.jaxb.DateAdapter;
 
 /**
  * 
@@ -87,6 +87,8 @@ public class StudentInfo {
 	 * 基于注解的格式化
 	 */
     @XmlElement
+    @XmlSchemaType(name = "dateTime")
+    @XmlJavaTypeAdapter(value = DateAdapter.class)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
     
@@ -100,7 +102,7 @@ public class StudentInfo {
 	 *  创建时间
 	 * 基于注解的格式化
 	 */
-    @XmlElement(name = "TransactionTime", required = true)
+    @XmlElement//(name = "TransactionTime", required = true)
     @XmlSchemaType(name = "dateTime")
     @XmlJavaTypeAdapter(value = DateAdapter.class)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -111,6 +113,8 @@ public class StudentInfo {
 	 * 基于注解的格式化
 	 */
     @XmlElement
+    @XmlSchemaType(name = "dateTime")
+    @XmlJavaTypeAdapter(value = DateAdapter.class)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifyTime;
     

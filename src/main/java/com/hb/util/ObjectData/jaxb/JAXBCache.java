@@ -1,4 +1,4 @@
-package com.hb.util.ObjectData;
+package com.hb.util.ObjectData.jaxb;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -21,7 +21,7 @@ public final class JAXBCache {
         return instance;
     }
  
-    JAXBContext getJAXBContext(Class<?> clazz) throws JAXBException {
+    public  JAXBContext getJAXBContext(Class<?> clazz) throws JAXBException {
  
         JAXBContext context = contextCache.get(clazz.getName());
         if ( context == null )

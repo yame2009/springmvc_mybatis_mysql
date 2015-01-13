@@ -1,4 +1,4 @@
-package com.hb.util.ObjectData;
+package com.hb.util.ObjectData.jaxb;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,6 +15,7 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.commons.io.IOUtils;
 
 import com.hb.models.StudentInfo;
+import com.hb.util.commonUtil.StringUtil;
 
 /**
  * <pre>
@@ -24,7 +25,7 @@ import com.hb.models.StudentInfo;
  *		2.读取一个XML文件并输出对象.
  * </pre>
  */
-public class JaxbUtil {
+public class JAXBUtil {
 	
 	/**
      * 生成xml文件的二进制数据
@@ -40,6 +41,36 @@ public class JaxbUtil {
         byte[] result = outputStream.toByteArray();
         return result;
     }
+    
+	/**
+     * 生成xml文件的二进制数据,"D:\\HelloWorld.xml"
+     * @param obj 对象
+     */
+    public static File marshal(Object obj,String filePath) throws JAXBException {
+    	if(StringUtil.isEmpty(filePath))
+    	{
+    		return null;
+    	}
+    	
+    	File file= new File(filePath);
+    	
+    	if(file == null)
+    	{
+    		return null;
+    	}
+    	
+    	 //初始化JAXBContext.JAXBContext类提供的JAXB API的客户端的入口点。
+        //它提供一个抽象的用于管理XML / Java绑定的必要信息，以实现JAXB绑定框架行动：解组，编组和验证。
+        JAXBContext context = JAXBCache.instance().getJAXBContext(obj.getClass());
+        
+        //将Java对象Marshal成XML内容的Marshal的初始化设置.
+        Marshaller jaxbMarshaller = context.createMarshaller();
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        jaxbMarshaller.marshal(obj, file); //输出到文件
+        jaxbMarshaller.marshal(obj, System.out);//控制台输出
+        
+        return file;
+    }
  
     /**
      * @param data xml stream
@@ -53,6 +84,19 @@ public class JaxbUtil {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(data);
         Object obj = m.unmarshal(inputStream);
         return obj;
+    }
+    
+    /**
+     * @param data xml stream
+     * @param classe 类
+     * @return jaxb生成xml的java 类对象
+     */
+    public static Object unmarshal(File file,Class<?> classe) throws JAXBException {
+ 
+        JAXBContext context = JAXBCache.instance().getJAXBContext(classe);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        
+        return  unmarshaller.unmarshal(file);
     }
  
     /**
@@ -70,34 +114,13 @@ public class JaxbUtil {
         return obj;
     }
  
-//    public static void main(String[] args) throws JAXBException {
-// 
-//        Userinfo userinfo = new Userinfo();
-//        userinfo.setId(Long.valueOf(11));
-//        List<Overinfo> list = new ArrayList<Overinfo>();
-//        Overinfo e = new Overinfo();
-//        e.setHobby("陪女友");
-//        list.add(e);
-//        Overinfo e1 = new Overinfo();
-//        e1.setHobby("写代码");
-//        list.add(e1);
-//        userinfo.setOverinfos(list);
-// 
-//        byte[] b = JAXBUtil.marshal(userinfo);
-//        System.out.println(new String(b));
-//        userinfo = (Userinfo) JAXBUtil.unmarshal(b, Userinfo.class);
-// 
-//        System.out.println(userinfo.getOverinfos().get(0).getHobby());
-// 
-//    }
-
 	 public static void main(String[] args) {
-		 java2Xml();
+		 java2XmlTest();
 		 
-		 xml2Java();
+		 xml2JavaTest();
 	 }
 
-	private static void java2Xml() {
+	private static void java2XmlTest() {
 		StudentInfo student=new StudentInfo();
 		 student.setId(1);
 		 student.setName("Hello World!");
@@ -110,16 +133,21 @@ public class JaxbUtil {
 		 student.setSex(1);
 	         
 	        try {
-	            File file=new File("D:\\HelloWorld.xml");
-	            //初始化JAXBContext.JAXBContext类提供的JAXB API的客户端的入口点。
-	            //它提供一个抽象的用于管理XML / Java绑定的必要信息，以实现JAXB绑定框架行动：解组，编组和验证。
-	            JAXBContext jc=JAXBContext.newInstance(StudentInfo.class);
-	            //将Java对象Marshal成XML内容的Marshal的初始化设置.
-	            Marshaller jaxbMarshaller=jc.createMarshaller();
-	            //output
-	            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	            jaxbMarshaller.marshal(student, file);
-	            jaxbMarshaller.marshal(student, System.out);//控制台输出
+//	        	 File file=new File("D:\\HelloWorld.xml");
+//		            //初始化JAXBContext.JAXBContext类提供的JAXB API的客户端的入口点。
+//		            //它提供一个抽象的用于管理XML / Java绑定的必要信息，以实现JAXB绑定框架行动：解组，编组和验证。
+//		            JAXBContext jc=JAXBContext.newInstance(StudentInfo.class);
+//		            //将Java对象Marshal成XML内容的Marshal的初始化设置.
+//		            Marshaller jaxbMarshaller=jc.createMarshaller();
+//		            //output
+//		            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//		            jaxbMarshaller.marshal(student, file);
+//		            jaxbMarshaller.marshal(student, System.out);//控制台输出
+	            File marshalFile = marshal(student,"D:\\HelloWorld.xml");
+	            if(marshalFile != null)
+	            {
+	            	System.out.println("marshalFile path : "+marshalFile);
+	            }
 	             
 	        } catch (JAXBException e) {
 	            System.out.println("output xml error!");
@@ -127,13 +155,14 @@ public class JaxbUtil {
 	        }
 	}
 	
-	private static void xml2Java() {
+	private static void xml2JavaTest() {
 		  File file=new File("D:\\HelloWorld.xml");
 	        try {
 	            //反着来
-	            JAXBContext jc=JAXBContext.newInstance(StudentInfo.class);
-	            Unmarshaller unmarshaller=jc.createUnmarshaller();
-	            StudentInfo cus=(StudentInfo) unmarshaller.unmarshal(file);
+//	            JAXBContext jc=JAXBContext.newInstance(StudentInfo.class);
+//	            Unmarshaller unmarshaller=jc.createUnmarshaller();
+//	            StudentInfo cus=(StudentInfo) unmarshaller.unmarshal(file);
+	        	 StudentInfo cus=(StudentInfo)  unmarshal(file,StudentInfo.class);
 	            System.out.println("data:"+cus);
 	            System.out.println("data:"+cus.getId());
 	            System.out.println("data:"+cus.getName());

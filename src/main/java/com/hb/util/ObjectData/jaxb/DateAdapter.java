@@ -1,4 +1,4 @@
-package com.hb.util.ObjectData.DateAdapter;
+package com.hb.util.ObjectData.jaxb;
 
 
 import java.util.Date;
