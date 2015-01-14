@@ -1,5 +1,6 @@
 package com.hb.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.inject.Named;
@@ -47,8 +48,10 @@ import com.hb.util.java2xml.jaxb.DateAdapter;
 @XmlRootElement(name = "StudentInfo")
 @XmlType(name = "StudentInfo", propOrder = { "name","password","email","sex","age","birthday","address","createTime","modifyTime"})
 @Table(name = "studentinfo")
-public class StudentInfo {
+public class StudentInfo implements Serializable{
     
+	private static final long serialVersionUID = -1491333142847223254L;
+
 	/**
 	  *  其实@XmlType已经默认会读取下面的name和age.@XmlElement在@XmlType存在的情况下,只会起到一个标识作用.
 	  */ 

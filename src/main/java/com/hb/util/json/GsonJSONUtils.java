@@ -19,11 +19,16 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+
 import org.apache.commons.lang.StringUtils;
  
 /**
@@ -115,7 +120,7 @@ public class GsonJSONUtils {
     public GsonJSONUtils() {
         super();
     }
- 
+    
     /**
      * 将给定的目标对象根据指定的条件参数转换成 {@code JSON} 格式的字符串。
      * <p />
@@ -416,4 +421,23 @@ public class GsonJSONUtils {
         }
         return result;
     }
+    
+    public static String bean2Json(Object obj) {
+        return toJson(obj);
+    }
+ 
+    public static <T> T json2Bean(String jsonStr, Class<T> objClass) {
+        return fromJson(jsonStr, objClass);
+    }
+ 
+    public static String jsonFormatter(String uglyJsonStr) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        JsonElement je = jp.parse(uglyJsonStr);
+        String prettyJsonString = gson.toJson(je);
+        return prettyJsonString;
+    }
+ 
+   
+    
 }

@@ -939,5 +939,55 @@ public class StringUtil extends StringUtils {
 		}
 		return null;
 	}
+	
+	/**
+	 * 判断某字符串是否非空
+	 * @param str
+	 * @return
+	 */
+	public static boolean isNotEmpty(String str)
+	{
+		return !isEmpty(str);
+	}
+
+	/**
+	 * 判断某字符串是否为空或长度为0或由空白符(whitespace) 构成 
+	 * 
+	 * StringUtils.isBlank("\t \n \f \r") = true   //对于制表符、换行符、换页符和回车符
+	 * 
+	 * @param s
+	 * @return true;s 为空白字符串
+	 */
+	public static boolean isBlank(String s) {
+		if (isNullOrSpace(s)) {
+			return true;
+		}
+
+		int length = s.trim().length();
+		if (s.isEmpty() || length == 0) {
+			return true;
+		}
+		
+		for (int i = 0; i < length; i++) {
+			if (Character.isWhitespace(s.charAt(i))) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+	
+	/**
+	 * 判断某字符串是否不为空且长度不为0且不由空白符(whitespace) 构成，等于 !isBlank(String str) 
+	 * 
+	 * StringUtils.isBlank("\t \n \f \r") = false   //对于制表符、换行符、换页符和回车符
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static boolean isNotBlank(String str) 
+	{
+		return !isBlank(str);
+	}
 
 }
