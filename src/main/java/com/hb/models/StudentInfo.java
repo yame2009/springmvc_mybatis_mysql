@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.hb.util.ObjectData.jaxb.DateAdapter;
+import com.hb.util.java2xml.jaxb.DateAdapter;
 
 /**
  * 
