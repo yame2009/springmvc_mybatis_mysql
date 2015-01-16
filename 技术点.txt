@@ -74,10 +74,20 @@ SpringMVC配置JSON、JSP、FreeMark多视图解析器配置  http://my.oschina.
  SSM集成的基础项目，项目使用Maven管理   https://github.com/abel533/Mybatis-Spring/tree/spring4
  
 --利用 org.apache.commons.io.FileUtils快速读写文件 http://my.oschina.net/15231182322/blog/347517
+
+
+java 技术点大全网站： 
+    1. http://www.mkyong.com/
+    2. http://camelcode.org
+    3. http://examples.javacodegeeks.com/
+
+
+
+-- Java JSON Tutorial    http://www.mkyong.com/tutorials/java-json-tutorials/
  
- Jackson VS FastJson VS Gson ( java Json 序列化与反序列化) http://my.oschina.net/zuiwoxing/blog/354860
+---Jackson VS FastJson VS Gson ( java Json 序列化与反序列化) http://my.oschina.net/zuiwoxing/blog/354860
  
- Jackson 框架，轻易转换JSON  http://www.cnblogs.com/hoojo/archive/2011/04/22/2024628.html
+---Jackson 框架，轻易转换JSON  http://www.cnblogs.com/hoojo/archive/2011/04/22/2024628.html
  
 ---Java将对象保存到文件中/从文件中读取对象(java序列化对象流)  http://www.cnblogs.com/hrlnw/p/3617478.html
  
@@ -117,6 +127,8 @@ Apache Shiro 使用手册（一）Shiro架构介绍  http://kdboy.iteye.com/blog
 SpringMVC整合Mongodb开发 架构搭建  http://www.cnblogs.com/dennisit/p/3372568.html
 
 SpringMVC整合Mongodb开发,高级操作  http://www.cnblogs.com/dennisit/p/3374297.html
+
+ MongoDB Core Examples  http://www.mkyong.com/tutorials/java-mongodb-tutorials/#spring-mongodb
 
 MongoDB学习笔记   http://limingnihao.iteye.com/category/291266
 
