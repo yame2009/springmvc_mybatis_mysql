@@ -23,7 +23,13 @@ public class DateUtil {
 	 */
 	private static final Logger log = LoggerFactory.getLogger(DateUtil.class);
 
+	/** 时间格式：yyyy-MM-dd  */
 	public static final String FORMATER_YYYY_MM_DD = "yyyy-MM-dd";
+	
+	/** 时间格式：yyyy-MM-dd HH:mm */
+	public static final String FORMATER_YYYY_MM_DD_HH_MM = "yyyy-MM-dd HH:mm";
+	
+	/** 时间格式：yyyy-MM-dd HH:mm:ss */
 	public static final String FORMATER_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
 	/**
@@ -86,7 +92,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String formatFromDate(Date date) {
-		return formatFromDate(FORMATER_YYYY_MM_DD, date);
+		return formatFromDate(date,FORMATER_YYYY_MM_DD);
 	}
 
 	public static Date getCurrentDate() {
@@ -140,7 +146,7 @@ public class DateUtil {
 	 *            日期
 	 * @return
 	 */
-	public static String formatFromDate(String formater, Date date) {
+	public static String formatFromDate(Date date,String formater) {
 		DateFormat df = new SimpleDateFormat(formater);
 		return df.format(date);
 	}
@@ -154,7 +160,7 @@ public class DateUtil {
 	 *            可格式化为日期的字符串
 	 * @return
 	 */
-	public static String formatFromString(String formater, String s) {
+	public static String formatFromString(String s,String formater) {
 		DateFormat df = new SimpleDateFormat(formater);
 		return df.format(s);
 	}
@@ -168,7 +174,7 @@ public class DateUtil {
 	 *            格式，常用的为 yyyy-MM-dd HH:mm:ss
 	 * @return java.util.Date，如果出错会返回null
 	 */
-	public static Date StringToDate(String str, String format) {
+	public static Date stringToDate(String str, String format) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		Date date = null;
 		try {
@@ -961,6 +967,104 @@ public class DateUtil {
 	public static String formatDateByUnixTime(long unixTime, String dateFormat) {
 		return dateFormat(new Date(unixTime * 1000), dateFormat);
 	}
+	
+	
+	 /**  
+     * 以友好的方式显示时间  
+     *   
+     * @param sdate  
+     * @return  
+     */  
+    public static String friendly_time(String sdate) {  
+    	
+        Date time = stringToDate(sdate,FORMATER_YYYY_MM_DD_HH_MM);;  
+        
+        if (time == null) {  
+            return "Unknown";  
+        }  
+        String ftime = "";  
+        Calendar cal = Calendar.getInstance();  
+  
+        // 判断是否是同一天  
+        String curDate = formatFromDate(cal.getTime(),FORMATER_YYYY_MM_DD);
+        String paramDate = formatFromDate(time,FORMATER_YYYY_MM_DD); 
+        if (curDate.equals(paramDate)) {  
+            int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);  
+            if (hour == 0)  
+                ftime = Math.max(  
+                        (cal.getTimeInMillis() - time.getTime()) / 60000, 1)  
+                        + "分钟前";  
+            else  
+                ftime = hour + "小时前";  
+            return ftime;  
+        }  
+  
+        long lt = time.getTime() / 86400000;  
+        long ct = cal.getTimeInMillis() / 86400000;  
+        int days = (int) (ct - lt);  
+        if (days == 0) {  
+            int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);  
+            if (hour == 0)  
+                ftime = Math.max(  
+                        (cal.getTimeInMillis() - time.getTime()) / 60000, 1)  
+                        + "分钟前";  
+            else  
+                ftime = hour + "小时前";  
+        } else if (days == 1) {  
+            ftime = "昨天";  
+        } else if (days == 2) {  
+            ftime = "前天";  
+        } else if (days > 2 && days <= 10) {  
+            ftime = days + "天前";  
+        } else if (days > 10) {  
+            ftime = formatFromDate(time,FORMATER_YYYY_MM_DD);  
+        }  
+        return ftime;  
+    }  
+    
+    /**  
+     * 判断给定字符串时间是否为今日  
+     *   
+     * @param sdate  
+     * @return boolean  
+     */  
+    public static boolean isToday(String sdate) {  
+        boolean b = false;  
+        Date time = stringToDate(sdate,FORMATER_YYYY_MM_DD_HH_MM);  
+        Date today = new Date();  
+        if (time != null) {  
+            String nowDate = formatFromDate(today);  
+            String timeDate = formatFromDate(time);  
+            if (nowDate.equals(timeDate)) {  
+                b = true;  
+            }  
+        }  
+        return b;  
+    } 
+    
+    
+    /**
+     * 毫秒转格式为：days + "天，" + hours + "小时，" + minutes + "分"
+     * @param mss 毫秒
+     * @return
+     */
+    public static String formatDuring(long mss) {  
+        long days = mss / (1000 * 60 * 60 * 24);  
+        long hours = (mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);  
+        long minutes = (mss % (1000 * 60 * 60)) / (1000 * 60);  
+        long seconds = (mss % (1000 * 60)) / 1000;  
+        return days + "天，" + hours + "小时，" + minutes + "分";  
+    }  
+  
+    /**
+     * 获得两个时间相差的友好时间显示方案：days + "天，" + hours + "小时，" + minutes + "分"
+     * @param begin
+     * @param end
+     * @return
+     */
+    public static String formatDuring(Date begin, Date end) {  
+        return formatDuring(end.getTime() - begin.getTime());  
+    } 
 
 	
 	public static void main(String[] args) {

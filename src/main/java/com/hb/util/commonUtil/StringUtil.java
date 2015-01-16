@@ -21,8 +21,9 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletResponse;
+
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -33,7 +34,7 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.ServletRequestUtils;
+//import org.springframework.web.bind.ServletRequestUtils;
 
 /**
  * 
@@ -45,10 +46,6 @@ public class StringUtil extends StringUtils {
 
 	@SuppressWarnings("unused")
 	private static Log log = LogFactory.getLog(StringUtil.class);
-
-	public static void main(String[] args) {
-		System.out.println(Integer.MAX_VALUE);
-	}
 
 	/**
 	 * 将汉字转换为全拼
@@ -249,26 +246,26 @@ public class StringUtil extends StringUtils {
 		return s;
 	}
 
-	/**
-	 * 本方法封装了往前台设置的header,contentType等信息
-	 * 
-	 * @param message
-	 *            需要传给前台的数据
-	 * @param type
-	 *            指定传给前台的数据格式,如"html","json"等
-	 * @param response
-	 *            HttpServletResponse对象
-	 * @throws IOException
-	 * @createDate 2010-12-31 17:55:41
-	 */
-	public static void writeToWeb(String message, String type,
-			HttpServletResponse response) throws IOException {
-		response.setHeader("Pragma", "No-cache");
-		response.setHeader("Cache-Control", "no-cache");
-		response.setContentType("text/" + type + "; charset=utf-8");
-		response.getWriter().write(message);
-		response.getWriter().close();
-	}
+//	/**
+//	 * 本方法封装了往前台设置的header,contentType等信息
+//	 * 
+//	 * @param message
+//	 *            需要传给前台的数据
+//	 * @param type
+//	 *            指定传给前台的数据格式,如"html","json"等
+//	 * @param response
+//	 *            HttpServletResponse对象
+//	 * @throws IOException
+//	 * @createDate 2010-12-31 17:55:41
+//	 */
+//	public static void writeToWeb(String message, String type,
+//			HttpServletResponse response) throws IOException {
+//		response.setHeader("Pragma", "No-cache");
+//		response.setHeader("Cache-Control", "no-cache");
+//		response.setContentType("text/" + type + "; charset=utf-8");
+//		response.getWriter().write(message);
+//		response.getWriter().close();
+//	}
 
 	/**
 	 * 如果传过来个空，则返回""</br> 否则返回原对象
@@ -336,26 +333,26 @@ public class StringUtil extends StringUtils {
 		return UUID.randomUUID().toString().replaceAll("-", "");
 	}
 
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public static String getOrderString(HttpServletRequest request) {
-		String orderString = "";
-
-		String sortName = ServletRequestUtils.getStringParameter(request,
-				"sort", "");
-		String sortOrder = ServletRequestUtils.getStringParameter(request,
-				"order", "");
-		if (sortName.length() > 0) {
-			orderString = sortName;
-			if (sortOrder.length() > 0) {
-				orderString += " " + sortOrder;
-			}
-		}
-		return orderString;
-	}
+//	/**
+//	 * 
+//	 * @param request
+//	 * @return
+//	 */
+//	public static String getOrderString(HttpServletRequest request) {
+//		String orderString = "";
+//
+//		String sortName = ServletRequestUtils.getStringParameter(request,
+//				"sort", "");
+//		String sortOrder = ServletRequestUtils.getStringParameter(request,
+//				"order", "");
+//		if (sortName.length() > 0) {
+//			orderString = sortName;
+//			if (sortOrder.length() > 0) {
+//				orderString += " " + sortOrder;
+//			}
+//		}
+//		return orderString;
+//	}
 
 	/**
 	 * 判断一个字符串是不是空或者为""
@@ -499,233 +496,233 @@ public class StringUtil extends StringUtils {
 		return o;
 	}
 
-	public static <T> T requestToObject(HttpServletRequest request,
-			Class<T> clazz) {
+//	public static <T> T requestToObject(HttpServletRequest request,
+//			Class<T> clazz) {
+//
+//		if (null == request) {
+//			return null;
+//		}
+//
+//		Field[] fields = clazz.getDeclaredFields(); // 取到所有类下的属性，也就是变量名
+//		Field field;
+//		T o = null;
+//		try {
+//			o = clazz.newInstance();
+//		} catch (InstantiationException e1) {
+//			e1.printStackTrace();
+//		} catch (IllegalAccessException e1) {
+//			e1.printStackTrace();
+//		}
+//		for (int i = 0; i < fields.length; i++) {
+//			field = fields[i];
+//			String fieldName = field.getName();
+//			// 把属性的第一个字母处理成大写
+//			String stringLetter = fieldName.substring(0, 1).toUpperCase();
+//			// 取得set方法名，比如setBbzt
+//			String setName = "set" + stringLetter + fieldName.substring(1);
+//			// 真正取得get方法。
+//			Method setMethod = null;
+//			Class<?> fieldClass = field.getType();
+//			try {
+//				Object value = request.getParameter(fieldName);
+//				Object valueArray = request.getParameterValues(fieldName);
+//				if (value != null && isHaveSuchMethod(clazz, setName)) {
+//					if (String.valueOf(value).trim().length() > 0) {
+//						if (fieldClass == String.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(o, String.valueOf(value));// 为其赋值
+//						} else if (fieldClass == Integer.class
+//								|| fieldClass == int.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(o,
+//									Integer.parseInt(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Boolean.class
+//								|| fieldClass == boolean.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(o,
+//									Boolean.getBoolean(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Short.class
+//								|| fieldClass == short.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(o,
+//									Short.parseShort(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Long.class
+//								|| fieldClass == long.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(o,
+//									Long.parseLong(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Double.class
+//								|| fieldClass == double.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(o,
+//									Double.parseDouble(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Float.class
+//								|| fieldClass == float.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(o,
+//									Float.parseFloat(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == BigInteger.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(o, BigInteger.valueOf(Long
+//									.parseLong(String.valueOf(value))));// 为其赋值
+//						} else if (fieldClass == BigDecimal.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(o, BigDecimal.valueOf(Double
+//									.parseDouble(String.valueOf(value))));// 为其赋值
+//						} else if (fieldClass == Date.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							String tempValue = value.toString();
+//							Date tempDate = null;
+//							// 根据字符串长度确定要用何种形式转换
+//							if (tempValue.length() > 0
+//									&& tempValue.length() < 12) {
+//								tempDate = DateUtil.StringToDate(
+//										value.toString(),
+//										DateUtil.FORMATER_YYYY_MM_DD);
+//							} else if (tempValue.length() >= 13
+//									&& tempValue.length() < 21) {
+//								tempDate = DateUtil.StringToDate(
+//										value.toString(),
+//										DateUtil.FORMATER_YYYY_MM_DD_HH_MM_SS);
+//							}
+//							// 如果转换成功了，就赋值，如果不成功就让它空着吧。
+//							if (null != tempDate) {
+//								setMethod.invoke(o, tempDate);// 为其赋值
+//							}
+//						}
+//					} else {
+//						Object oo = null;
+//						setMethod = clazz.getMethod(setName, fieldClass);
+//						setMethod.invoke(o, oo);// 为其赋值
+//					}
+//
+//				}
+//				if (valueArray != null && isHaveSuchMethod(clazz, setName)) {
+//					if (fieldClass == String[].class) {
+//						setMethod = clazz.getMethod(setName, fieldClass);
+//						setMethod.invoke(o, value == null ? null : valueArray);// 为其赋值
+//					}
+//				}
+//			} catch (Exception e) {
+//			}
+//
+//		}
+//		return o;
+//	}
 
-		if (null == request) {
-			return null;
-		}
-
-		Field[] fields = clazz.getDeclaredFields(); // 取到所有类下的属性，也就是变量名
-		Field field;
-		T o = null;
-		try {
-			o = clazz.newInstance();
-		} catch (InstantiationException e1) {
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			e1.printStackTrace();
-		}
-		for (int i = 0; i < fields.length; i++) {
-			field = fields[i];
-			String fieldName = field.getName();
-			// 把属性的第一个字母处理成大写
-			String stringLetter = fieldName.substring(0, 1).toUpperCase();
-			// 取得set方法名，比如setBbzt
-			String setName = "set" + stringLetter + fieldName.substring(1);
-			// 真正取得get方法。
-			Method setMethod = null;
-			Class<?> fieldClass = field.getType();
-			try {
-				Object value = request.getParameter(fieldName);
-				Object valueArray = request.getParameterValues(fieldName);
-				if (value != null && isHaveSuchMethod(clazz, setName)) {
-					if (String.valueOf(value).trim().length() > 0) {
-						if (fieldClass == String.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(o, String.valueOf(value));// 为其赋值
-						} else if (fieldClass == Integer.class
-								|| fieldClass == int.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(o,
-									Integer.parseInt(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Boolean.class
-								|| fieldClass == boolean.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(o,
-									Boolean.getBoolean(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Short.class
-								|| fieldClass == short.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(o,
-									Short.parseShort(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Long.class
-								|| fieldClass == long.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(o,
-									Long.parseLong(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Double.class
-								|| fieldClass == double.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(o,
-									Double.parseDouble(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Float.class
-								|| fieldClass == float.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(o,
-									Float.parseFloat(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == BigInteger.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(o, BigInteger.valueOf(Long
-									.parseLong(String.valueOf(value))));// 为其赋值
-						} else if (fieldClass == BigDecimal.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(o, BigDecimal.valueOf(Double
-									.parseDouble(String.valueOf(value))));// 为其赋值
-						} else if (fieldClass == Date.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							String tempValue = value.toString();
-							Date tempDate = null;
-							// 根据字符串长度确定要用何种形式转换
-							if (tempValue.length() > 0
-									&& tempValue.length() < 12) {
-								tempDate = DateUtil.StringToDate(
-										value.toString(),
-										DateUtil.FORMATER_YYYY_MM_DD);
-							} else if (tempValue.length() >= 13
-									&& tempValue.length() < 21) {
-								tempDate = DateUtil.StringToDate(
-										value.toString(),
-										DateUtil.FORMATER_YYYY_MM_DD_HH_MM_SS);
-							}
-							// 如果转换成功了，就赋值，如果不成功就让它空着吧。
-							if (null != tempDate) {
-								setMethod.invoke(o, tempDate);// 为其赋值
-							}
-						}
-					} else {
-						Object oo = null;
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o, oo);// 为其赋值
-					}
-
-				}
-				if (valueArray != null && isHaveSuchMethod(clazz, setName)) {
-					if (fieldClass == String[].class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o, value == null ? null : valueArray);// 为其赋值
-					}
-				}
-			} catch (Exception e) {
-			}
-
-		}
-		return o;
-	}
-
-	/**
-	 * 自动将传过来的参数放到实体，本方法仅适用于修改页面 本方法会把接到的空字符串也set进实体
-	 * 
-	 * @param request
-	 * @param entity
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T requestToObject(HttpServletRequest request, T entity) {
-
-		if (null == request || null == entity) {
-			return null;
-		}
-		Class<T> clazz = (Class<T>) entity.getClass();
-		Field[] fields = clazz.getDeclaredFields(); // 取到所有类下的属性，也就是变量名
-		Field field;
-		for (int i = 0; i < fields.length; i++) {
-			field = fields[i];
-			String fieldName = field.getName();
-			// 把属性的第一个字母处理成大写
-			String stringLetter = fieldName.substring(0, 1).toUpperCase();
-			// 取得set方法名，比如setBbzt
-			String setName = "set" + stringLetter + fieldName.substring(1);
-			// 真正取得get方法。
-			Method setMethod = null;
-			Class<?> fieldClass = field.getType();
-			try {
-				Object value = request.getParameter(fieldName);
-				Object valueArray = request.getParameterValues(fieldName);
-				if (value != null && isHaveSuchMethod(clazz, setName)) {
-					if (String.valueOf(value).trim().length() > 0) {
-						if (fieldClass == String.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(entity, String.valueOf(value));// 为其赋值
-						} else if (fieldClass == Integer.class
-								|| fieldClass == int.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(entity,
-									Integer.parseInt(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Boolean.class
-								|| fieldClass == boolean.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(entity,
-									Boolean.getBoolean(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Short.class
-								|| fieldClass == short.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(entity,
-									Short.parseShort(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Long.class
-								|| fieldClass == long.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(entity,
-									Long.parseLong(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Double.class
-								|| fieldClass == double.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(entity,
-									Double.parseDouble(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == Float.class
-								|| fieldClass == float.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(entity,
-									Float.parseFloat(String.valueOf(value)));// 为其赋值
-						} else if (fieldClass == BigInteger.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(entity, BigInteger.valueOf(Long
-									.parseLong(String.valueOf(value))));// 为其赋值
-						} else if (fieldClass == BigDecimal.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							setMethod.invoke(entity, BigDecimal.valueOf(Double
-									.parseDouble(String.valueOf(value))));// 为其赋值
-						} else if (fieldClass == Date.class) {
-							setMethod = clazz.getMethod(setName, fieldClass);
-							String tempValue = value.toString();
-							Date tempDate = null;
-							// 根据字符串长度确定要用何种形式转换
-							if (tempValue.length() > 0
-									&& tempValue.length() < 12) {
-								tempDate = DateUtil.StringToDate(
-										value.toString(),
-										DateUtil.FORMATER_YYYY_MM_DD);
-							} else if (tempValue.length() >= 13
-									&& tempValue.length() < 21) {
-								tempDate = DateUtil.StringToDate(
-										value.toString(),
-										DateUtil.FORMATER_YYYY_MM_DD_HH_MM_SS);
-							}
-							// 如果转换成功了，就赋值，如果不成功就让它空着吧。
-							if (null != tempDate) {
-								setMethod.invoke(entity, tempDate);// 为其赋值
-							}
-						}
-					} else {
-						Object oo = null;
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(entity, oo);// 为其赋值
-					}
-
-				}
-				if (valueArray != null && isHaveSuchMethod(clazz, setName)) {
-					if (fieldClass == String[].class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(entity, value == null ? null
-								: valueArray);// 为其赋值
-					}
-				}
-			} catch (Exception e) {
-			}
-
-		}
-		return entity;
-	}
+//	/**
+//	 * 自动将传过来的参数放到实体，本方法仅适用于修改页面 本方法会把接到的空字符串也set进实体
+//	 * 
+//	 * @param request
+//	 * @param entity
+//	 * @return
+//	 */
+//	@SuppressWarnings("unchecked")
+//	public static <T> T requestToObject(HttpServletRequest request, T entity) {
+//
+//		if (null == request || null == entity) {
+//			return null;
+//		}
+//		Class<T> clazz = (Class<T>) entity.getClass();
+//		Field[] fields = clazz.getDeclaredFields(); // 取到所有类下的属性，也就是变量名
+//		Field field;
+//		for (int i = 0; i < fields.length; i++) {
+//			field = fields[i];
+//			String fieldName = field.getName();
+//			// 把属性的第一个字母处理成大写
+//			String stringLetter = fieldName.substring(0, 1).toUpperCase();
+//			// 取得set方法名，比如setBbzt
+//			String setName = "set" + stringLetter + fieldName.substring(1);
+//			// 真正取得get方法。
+//			Method setMethod = null;
+//			Class<?> fieldClass = field.getType();
+//			try {
+//				Object value = request.getParameter(fieldName);
+//				Object valueArray = request.getParameterValues(fieldName);
+//				if (value != null && isHaveSuchMethod(clazz, setName)) {
+//					if (String.valueOf(value).trim().length() > 0) {
+//						if (fieldClass == String.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(entity, String.valueOf(value));// 为其赋值
+//						} else if (fieldClass == Integer.class
+//								|| fieldClass == int.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(entity,
+//									Integer.parseInt(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Boolean.class
+//								|| fieldClass == boolean.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(entity,
+//									Boolean.getBoolean(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Short.class
+//								|| fieldClass == short.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(entity,
+//									Short.parseShort(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Long.class
+//								|| fieldClass == long.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(entity,
+//									Long.parseLong(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Double.class
+//								|| fieldClass == double.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(entity,
+//									Double.parseDouble(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == Float.class
+//								|| fieldClass == float.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(entity,
+//									Float.parseFloat(String.valueOf(value)));// 为其赋值
+//						} else if (fieldClass == BigInteger.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(entity, BigInteger.valueOf(Long
+//									.parseLong(String.valueOf(value))));// 为其赋值
+//						} else if (fieldClass == BigDecimal.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							setMethod.invoke(entity, BigDecimal.valueOf(Double
+//									.parseDouble(String.valueOf(value))));// 为其赋值
+//						} else if (fieldClass == Date.class) {
+//							setMethod = clazz.getMethod(setName, fieldClass);
+//							String tempValue = value.toString();
+//							Date tempDate = null;
+//							// 根据字符串长度确定要用何种形式转换
+//							if (tempValue.length() > 0
+//									&& tempValue.length() < 12) {
+//								tempDate = DateUtil.StringToDate(
+//										value.toString(),
+//										DateUtil.FORMATER_YYYY_MM_DD);
+//							} else if (tempValue.length() >= 13
+//									&& tempValue.length() < 21) {
+//								tempDate = DateUtil.StringToDate(
+//										value.toString(),
+//										DateUtil.FORMATER_YYYY_MM_DD_HH_MM_SS);
+//							}
+//							// 如果转换成功了，就赋值，如果不成功就让它空着吧。
+//							if (null != tempDate) {
+//								setMethod.invoke(entity, tempDate);// 为其赋值
+//							}
+//						}
+//					} else {
+//						Object oo = null;
+//						setMethod = clazz.getMethod(setName, fieldClass);
+//						setMethod.invoke(entity, oo);// 为其赋值
+//					}
+//
+//				}
+//				if (valueArray != null && isHaveSuchMethod(clazz, setName)) {
+//					if (fieldClass == String[].class) {
+//						setMethod = clazz.getMethod(setName, fieldClass);
+//						setMethod.invoke(entity, value == null ? null
+//								: valueArray);// 为其赋值
+//					}
+//				}
+//			} catch (Exception e) {
+//			}
+//
+//		}
+//		return entity;
+//	}
 
 	/**
 	 * 判断某个类里是否有某个方法
@@ -963,13 +960,14 @@ public class StringUtil extends StringUtils {
 			return true;
 		}
 
-		int length = s.trim().length();
-		if (s.isEmpty() || length == 0) {
+		String trim = s.trim();
+		int length = trim.length();
+		if (trim.isEmpty() || length == 0) {
 			return true;
 		}
 		
 		for (int i = 0; i < length; i++) {
-			if (Character.isWhitespace(s.charAt(i))) {
+			if (Character.isWhitespace(trim.charAt(i))) {
 				return true;
 			}
 		}
@@ -988,6 +986,11 @@ public class StringUtil extends StringUtils {
 	public static boolean isNotBlank(String str) 
 	{
 		return !isBlank(str);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(isBlank("  \ff"
+				+ ""));
 	}
 
 }
