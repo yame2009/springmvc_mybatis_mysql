@@ -14,25 +14,31 @@
     http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-3.2.xsd">
-  <!--   <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd
-       http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd"> -->
+	<!-- <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" 
+		xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd"> -->
 
-  <context:component-scan base-package="com.hb.service"/>
-  
+	<context:component-scan base-package="com.hb.service" />
+
 	<!-- 读取属性文件 -->
 	<context:property-placeholder location="classpath:config/jdbc.properties" />
 
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+		<property name="resultSetLogEnabled" value="false" />
+		<!--输出可执行的SQL -->
+		<property name="statementExecutableSqlLogEnable" value="true" />
+		<!--  SQL合并配置  -->
+		 <property name="mergeSql" value="true" />
+		 <!-- StatFilter属性slowSqlMillis用来配置SQL慢的标准，执行时间超过slowSqlMillis的就是慢。slowSqlMillis的缺省值为3000，也就是3秒。 -->
+		 <property name="slowSqlMillis" value="10000" />
+    	 <property name="logSlowSql" value="true" />
+	</bean>
+ 
+	<!-- DruidDataSource 常见问题 https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
 
@@ -63,6 +69,13 @@
 		<property name="testOnBorrow" value="false" />
 		<property name="testOnReturn" value="false" />
 
+		<property name="removeAbandoned" value="true" /> <!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandonedTimeout" value="1800" /> <!-- 1800秒，也就是30分钟 -->
+		<property name="logAbandoned" value="true" /> <!-- 关闭abanded连接时输出错误日志 -->
+		<property name="useGloalDataSourceStat" value="true" /> <!-- 合并多个DruidDataSource的监控数据 -->
+		<!-- DruidDataSource有一个属性timeBetweenLogStatsMillis，配置timeBetweenLogStatsMillis>0之后，DruidDataSource会定期把监控数据输出到日志中 -->
+		<property name="timeBetweenLogStatsMillis" value="300000" />
+
 		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
 		<property name="poolPreparedStatements" value="true" />
 		<property name="maxPoolPreparedStatementPerConnectionSize"
@@ -70,6 +83,16 @@
 
 		<!-- 配置监控统计拦截的filters,Druid提供了WallFilter，它是基于SQL语义分析来实现防御SQL注入攻击,https://github.com/alibaba/druid/wiki/配置-wallfilter -->
 		<property name="filters" value="stat,wall" />
+
+		<!-- "filters"和“proxyFilters”两种配置Filter的方式，一种是配置filters属性，一种是配置proxyFilters属性。 
+			filters和proxyFilters的配置是组合关系，而不是替换关系。 https://github.com/alibaba/druid/wiki/%E5%86%85%E7%BD%AEFilter%E7%9A%84%E5%88%AB%E5%90%8D 
+			https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_Filter%E9%85%8D%E7%BD%AE 
+			https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_LogFilter -->
+		<property name="proxyFilters">
+			<list>
+				<ref bean="log-filter" />
+			</list>
+		</property>
 	</bean>
 
 
@@ -147,14 +170,10 @@
 			<tx:method name="*" propagation="SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
-	
-   <!-- <aop:config>
-		<aop:pointcut id="transactionPointcut"
-			expression="execution(* 
-		cn.hb.service..*Impl.*(..))" />
-		<aop:advisor pointcut-ref="transactionPointcut"
-			advice-ref="transactionAdvice" />
-	</aop:config>  -->
+
+	<!-- <aop:config> <aop:pointcut id="transactionPointcut" expression="execution(* 
+		cn.hb.service..*Impl.*(..))" /> <aop:advisor pointcut-ref="transactionPointcut" 
+		advice-ref="transactionAdvice" /> </aop:config> -->
 	<aop:config>
 		<aop:pointcut id="appService"
 			expression="execution(* com.hb.service..*Service*.*(..))" />
@@ -174,7 +193,7 @@
 	</bean>
 
 
-	<!-- 配置_Druid和Spring关联监控配置,druid监控spring jdbc .https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_Druid%E5%92%8CSpring%E5%85%B3%E8%81%94%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE-->
+	<!-- 配置_Druid和Spring关联监控配置,druid监控spring jdbc .https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_Druid%E5%92%8CSpring%E5%85%B3%E8%81%94%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE -->
 	<bean id="druid-stat-interceptor"
 		class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
 	</bean>
@@ -191,22 +210,16 @@
 	<aop:config>
 		<aop:advisor advice-ref="druid-stat-interceptor"
 			pointcut-ref="druid-stat-pointcut" />
-	</aop:config> 
-	
-	<!-- 配置_Druid和Spring关联监控配置,druid监控spring jdbc .https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_Druid%E5%92%8CSpring%E5%85%B3%E8%81%94%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE-->
-	<!-- <bean id="druid-stat-interceptor"
-		class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
-	</bean> -->
-		<!-- 配置_Druid和Spring关联监控配置-------按类型拦截配置 -->
-<!-- 	<bean id="druid-type-proxyCreator" class="com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator">
-    所有ABCInterface的派生类被拦截监控 
-    <property name="targetBeanType" value="xxxx.ABCInterface" />
-    <property name="interceptorNames">
-        <list>
-            <value>druid-stat-interceptor</value>
-        </list>
-    </property>
-  </bean> -->
+	</aop:config>
+
+	<!-- 配置_Druid和Spring关联监控配置,druid监控spring jdbc .https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_Druid%E5%92%8CSpring%E5%85%B3%E8%81%94%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE -->
+	<!-- <bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor"> 
+		</bean> -->
+	<!-- 配置_Druid和Spring关联监控配置-------按类型拦截配置 -->
+	<!-- <bean id="druid-type-proxyCreator" class="com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator"> 
+		所有ABCInterface的派生类被拦截监控 <property name="targetBeanType" value="xxxx.ABCInterface" 
+		/> <property name="interceptorNames"> <list> <value>druid-stat-interceptor</value> 
+		</list> </property> </bean> -->
 
 
 </beans>
