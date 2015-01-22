@@ -44,7 +44,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.hb.models.StudentInfo;
-import com.hb.util.file.IOUtils;
+import com.hb.util.file.FileUtils;
 
 import org.apache.commons.lang.StringUtils;
 
