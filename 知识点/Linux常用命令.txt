@@ -1,0 +1,182 @@
+  
+  Linux 常用命名 ： http://www.cnblogs.com/langtianya/p/4208137.html
+  
+	uname -a    查看内核版本       
+	ls -al    显示所有文件的属性
+	pwd         显示当前路径        
+	cd -    返回上一次目录     cd ~    返回主目录
+	date s      设置时间、日期          
+	cal      显示日历     cal 2006
+	bc          计算器具               
+	man  & info     帮助手册
+	locale     显示当前字体     locale -a    所有可用字体     /etc/sysconfig/i18n设置文件
+	LANG=en    使用英文字体            
+	sync       将数据同步写入硬盘        
+	shutdonw -h now & half & poweroff  关机
+	reboot     重启                   
+	startx  &  init 5   进入图形介面
+	/work  & ?work    向上、下查找文档内容
+	chgrp      改变档案群组  chgrp testing install.log    
+	chown     改变所属人   chown root:root install.log
+	chmod      改变属性     chmod 777 install.log     read=4  write=2  execute=1
+	cp   复制   cp filename
+	rm   删除文件  rm -rf filename   强制删除文件
+	rmdir   删除文件夹
+	mv  移动    mv 123.txt 222.txt  重命名
+	mkdir     创建文件夹
+	touch     创建文件  更新当前时间
+	cat       由第一行开始显示     cat |more  分页
+	nl        在内容前加行号
+	more  &  less   一面一面翻动
+	head -n filename   显示第N行内容
+	tail -n filename  显示后N行内容
+	od        显示非纯文档
+	df -h 显示分区空间
+	du  显示目录或文件的大小
+	fdisk   分区设置    fdisk -l /dev/hda  显示硬盘分区状态
+	mkfs    建立各种文件系统  mkfs -t ext3  /dev/ram15   
+	fsck    检查和修复LINUX档案
+	ln      硬链接   ln -s  软件链接
+	whereis   查找命令
+	locate    查找
+	find      查找   find / -name "***.***"
+	which     查看工具
+	whoami    显示当前用户
+	gcc -v    查看GCC版本
+	chattr +i filename  禁止删除   chattr -i filename  取消禁止
+	lsattr    显示隐藏档属性
+	updatedb  更新资料库
+	mke2fs    格式化   mkfs -t ext3 
+	dd if=/etc/passwd of=/tmp/passwd.bak    备份
+	mount     列出系统所有的分区
+	mount -t iso9660 /dev/cdrom /mnt/cdrom   挂载光盘
+	mount -t vfat /dev/fd0 /mnt/floppy       挂载软盘
+	mount -t vfat -o iocharset=utf8,umask=000 /dev/hda2 /mnt/hda2   挂载fat32分区
+	mount -t ntfs -o nls=utf8,umask=000 /dev/hda3 /mnt/hda3         挂载ntfs分区
+	Linux-NTFS Project: http://linux-ntfs.sourceforge.net/
+	umount /mnt/hda3  缷载
+	ifconfig   显示或设置网络设备
+	service network restart   重启网卡  
+	ifdown eth0  关闭网卡
+	ifup eth0    开启网卡
+	clear    清屏
+	history    历史记录       !55  执行第55个指令
+	stty   设置终端    stty -a
+	fdisk /mbr   删除GRUB
+	at     僅進行一次的工作排程
+	crontab   循環執行的例行性命令    [e]编辑,[l]显示,[r]删除任务
+	&       后台运行程序    tar -zxvf 123.tar.gz & --------->后台运行
+	jobs    观看后台暂停的程序   jobs -l
+	fg      将后台程序调到前台   fg n ------>n是数字,可以指定进行那个程序
+	bg      让工作在后台运行
+	kill    结束进程    kill -9 PID     [9]强制结束,[15]正常结束,[l]列出可用的kill信号
+	ps aux  查看后台程序   
+	top     查看后台程序   top -d 2    每两秒更新一次        top -d 2 -p10604   观看某个PID
+	        top -b -n 2 > /tmp/top.txt ----->將 top 的資訊進行 2 次，然後將結果輸出到 /tmp/top.txt    
+	pstree   以树状图显示程序    [A]以 ASCII 來連接, [u]列出PID, [p]列出帐号
+	killall   要刪除某個服務    killall -9 httpd
+	free      显示内存状态     free -m  -------->以M为单位显示
+	uptime    显示目前系统开机时间
+	netstat   显示网络状态    netstat -tulnp------>找出目前系統上已在監聽的網路連線及其 PID
+	dmesg     显示开机信息    demsg | more
+	nice      设置优先权      nice -n -5 vi & ----->用 root 給一個 nice 植為 -5 ，用於執行 vi 
+	renice    调整已存在优先权
+	runlevel  显示目前的runlevel
+	depmod    分析可载入模块的相依性
+	lsmod     显示已载入系统的模块
+	modinfo   显示kernel模块的信息
+	insmod    载入模块
+	modprobe   自动处理可载入模块
+	rmmod     删除模块
+	chkconfig   检查，设置系统的各种服务     chkconfig --list ----->列出各项服务状态
+	ntsysv     设置系统的各种服务
+	cpio      备份文件
+	lsof	列出系统所占用的资源,但是这些资源不一定会占用打开文件号的.比如共享内存,信号量,消息队列,内存映射.等,虽	然占用了这些资源,但不占用打开文件号
+	
+	
+	//以下是java开发人员常用的Linux命名
+	
+	1.查找文件
+		find / -name filename.txt
+		根据名称查找/目录下的filename.txt文件。
+		
+		2.查看一个程序是否运行
+		ps –ef|grep tomcat
+		查看所有有关tomcat的进程
+		
+		3.终止线程
+		kill -9 19979
+		终止线程号位19979的线程
+		
+		4.查看文件，包含隐藏文件
+		ls -al
+		
+		5.当前工作目录
+		pwd
+		
+		6.复制文件包括其子文件到自定目录
+		cp -r sourceFolder targetFolder
+		
+		7.创建目录
+		mkdir newfolder
+		
+		8.删除目录（此目录是空目录）
+		rmdir deleteEmptyFolder
+		
+		9.删除文件包括其子文件
+		rm -rf deleteFile
+		
+		10.移动文件
+		mv /temp/movefile /targetFolder
+		扩展重命名 mv oldNameFile newNameFile
+		
+		11.切换用户
+		su -username
+		
+		12.修改文件权限
+		chmod 777 file.java
+		//file.java的权限-rwxrwxrwx，r表示读、w表示写、x表示可执行
+		
+		13.压缩文件
+		tar -czf test.tar.gz /test1 /test2
+		
+		14.列出压缩文件列表
+		tar -tzf test.tar.gz
+		
+		15.解压文件
+		tar -xvzf test.tar.gz
+		
+		16.查看文件头10行
+		head -n 10 example.txt
+		
+		17.查看文件尾10行
+		tail -n 10 example.txt
+		
+		18.查看日志文件
+		tail -f exmaple.log
+		//这个命令会自动显示新增内容，屏幕只显示10行内容的（可设置）。
+		
+		
+		19.启动Vi编辑器
+		vi
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
