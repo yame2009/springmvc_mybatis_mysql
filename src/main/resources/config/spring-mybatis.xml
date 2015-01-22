@@ -23,6 +23,8 @@
 		http://www.springframework.org/schema/context/spring-context.xsd"> -->
 
 	<context:component-scan base-package="com.hb.service" />
+	
+	 <!-- <bean id="myStatLogger" class="com.hb.util.log.db.MyStatLogger"> -->
 
 	<!-- 读取属性文件 -->
 	<context:property-placeholder location="classpath:config/jdbc.properties" />
@@ -48,6 +50,7 @@
 		<!-- 基本属性 url、user、password -->
 		<property name="url" value="${jdbc_url}" />
 		<property name="username" value="${jdbc_username}" />
+		<!-- 数据库密码加密方法：https://github.com/alibaba/druid/wiki/%E4%BD%BF%E7%94%A8ConfigFilter  -->
 		<property name="password" value="${jdbc_password}" />
 
 		<!-- 配置初始化大小、最小、最大 -->
@@ -75,6 +78,8 @@
 		<property name="useGloalDataSourceStat" value="true" /> <!-- 合并多个DruidDataSource的监控数据 -->
 		<!-- DruidDataSource有一个属性timeBetweenLogStatsMillis，配置timeBetweenLogStatsMillis>0之后，DruidDataSource会定期把监控数据输出到日志中 -->
 		<property name="timeBetweenLogStatsMillis" value="300000" />
+		
+		<!-- 定制StatLogger实现输入监控数据到日志 <property name="statLogger" ref="myStatLogger" /> -->
 
 		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
 		<property name="poolPreparedStatements" value="true" />
