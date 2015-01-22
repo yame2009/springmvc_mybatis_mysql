@@ -16,6 +16,9 @@
 14.netty
 15.cxf webservice
 
+java中常用的工具类(一)     http://blog.csdn.net/zsw12013/article/details/36673893
+java中常用的工具类（二）  http://blog.csdn.net/zsw12013/article/details/36685931
+ java中常用的工具类（三） http://blog.csdn.net/zsw12013/article/details/36686809
 
 --项目中用到的logback列子   http://blog.csdn.net/haidage/article/details/6797039
 --日志组件logback的介绍及配置使用方法(二) http://blog.csdn.net/zhuyucheng123/article/details/21524403
