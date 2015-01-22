@@ -388,7 +388,14 @@
 			<artifactId>xstream</artifactId>
 			<version>1.4.7</version>
 		</dependency>
+		<!-- execl 文档操作工具包 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.11</version>
+		</dependency>
 
+	
 	</dependencies>
 
 	<build>
