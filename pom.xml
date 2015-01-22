@@ -21,6 +21,7 @@
 		<logback.version>1.1.2</logback.version>
 		<mysql.version>5.1.26</mysql.version>
 		<zxing.version>3.1.0</zxing.version>
+		<excel.poi.version>3.11</excel.poi.version>
 	</properties>
 
 	<!-- 公司的内部的maven下载库 -->
@@ -358,6 +359,19 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.1</version>
 		</dependency>
+		<!-- 文件压缩工具包 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-compress</artifactId>
+			<version>1.9</version>
+		</dependency>
+
+		<!-- 网络工具包 -->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.3</version>
+		</dependency>
 
 		<!-- 生成条形码的工具包 http://barcode4j.sourceforge.net/examples.html -->
 		<!-- <dependency> <groupId>net.sf.barcode4j</groupId> <artifactId>barcode4j</artifactId> 
@@ -392,10 +406,15 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.11</version>
+			<version>${excel.poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${excel.poi.version}</version>
 		</dependency>
 
-	
+
 	</dependencies>
 
 	<build>

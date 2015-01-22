@@ -16,9 +16,9 @@
 14.netty
 15.cxf webservice
 
-java中常用的工具类(一)     http://blog.csdn.net/zsw12013/article/details/36673893
-java中常用的工具类（二）  http://blog.csdn.net/zsw12013/article/details/36685931
- java中常用的工具类（三） http://blog.csdn.net/zsw12013/article/details/36686809
+--java中常用的工具类(一)     http://blog.csdn.net/zsw12013/article/details/36673893
+--java中常用的工具类（二）  http://blog.csdn.net/zsw12013/article/details/36685931
+--java中常用的工具类（三） http://blog.csdn.net/zsw12013/article/details/36686809
 
 --项目中用到的logback列子   http://blog.csdn.net/haidage/article/details/6797039
 --日志组件logback的介绍及配置使用方法(二) http://blog.csdn.net/zhuyucheng123/article/details/21524403
@@ -106,6 +106,8 @@ java 技术点大全网站：
  
  druid简单教程  http://www.cnblogs.com/blogsme/archive/2013/05/13/3075308.html
  
+ druid 官网资料： https://github.com/alibaba/druid/wiki
+ 
  
  MyBatis简介与配置MyBatis+Spring+MySql  http://limingnihao.iteye.com/blog/781671
  
@@ -117,6 +119,10 @@ MyBatis 一级和二级缓存    http://www.cnblogs.com/zemliu/p/3239014.html
 
 
 springmvc整合redis架构搭建实例 http://www.cnblogs.com/dennisit/p/3614521.html
+
+Redis系统性介绍  http://www.cnblogs.com/yuanermen/p/3953724.html
+
+Redis之七种武器  http://www.cnblogs.com/yuanermen/p/3953749.html
 
 jedis基本介绍 http://my.oschina.net/boomya/blog/68375
 
@@ -154,12 +160,16 @@ CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/36
 Netty那点事（一）概述  http://my.oschina.net/flashsword/blog/162936
 
  netty4.0研究之一  http://my.oschina.net/u/1384382/blog/170229
+ 
 
+sql语句+数据库   http://www.cnblogs.com/langtianya/category/415632.html
 
+H2数据库使用,h2只有一个jar文件，十分适合作为嵌入式数据库试用  http://www.cnblogs.com/langtianya/p/3807639.html
 
 初识使用Apache MINA 开发高性能网络应用程序   http://www.cnblogs.com/dennisit/archive/2013/02/21/2920693.html
 
 
+java连接各种数据库代码大全  http://www.cnblogs.com/langtianya/p/3145878.html
 
 中国行政区划代码数据库文件 - 最新县及县以上行政区划代码（截止2012年10月31日）
 http://blog.csdn.net/isea533/article/details/9140313
