@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Map;  
   
 
+
 import org.apache.log4j.Logger;  
 import org.bson.types.ObjectId;  
   
+
 
 import com.mongodb.BasicDBObject;  
 import com.mongodb.DB;  
@@ -173,7 +175,7 @@ public class MongoDBManager2 {
      */  
      public DBObject findById(String collection,String _id) {  
           DBObject obj = new BasicDBObject();  
-          obj.put("_id", ObjectId.massageToObjectId(_id));  
+          obj.put("_id", new Long(_id));  
           return getCollection(collection).findOne(obj);  
      }  
   
