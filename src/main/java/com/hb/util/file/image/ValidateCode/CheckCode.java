@@ -1,4 +1,4 @@
-package com.hb.util.file.image;
+package com.hb.util.file.image.ValidateCode;
 
 import java.awt.Color;
 import java.awt.Font;
