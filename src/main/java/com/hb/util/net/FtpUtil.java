@@ -1,4 +1,4 @@
-package com.hb.util.file;
+package com.hb.util.net;
 
 import java.io.File;  
 import java.io.FileOutputStream;  
