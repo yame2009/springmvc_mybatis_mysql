@@ -1,9 +1,16 @@
 package com.hb.util.commonUtil;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;  
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;  
 import java.util.List;  
 import java.util.Map;  
+import java.util.Set;
   
 /**  
  * 集合(List,Map,Set)辅助类。  
@@ -208,4 +215,137 @@ public class CollectionUtil {
         return (map == null || map.isEmpty());  
     }  
       
+    /**
+     * 将一个List<T> 分成 groupSize个List子集合
+     * @param l ，List<T>   数据源List集合
+     * @param groupSize     需要拆分的子集合数量
+     * @return List<List<T>>  分拆之后的集合
+     */
+    public static <T> List<List<T>> splitList(List<T> l, int groupSize)
+    {
+        if (l == null || l.isEmpty())
+            return Collections.<List<T>> emptyList();
+
+        List<List<T>> res = new ArrayList<List<T>>(l.size() / groupSize
+                + ((l.size() % groupSize == 0) ? 0 : 1));
+
+        do
+        {
+            int limit = Math.min(l.size(), groupSize);
+            res.add(l.subList(0, limit));
+            l = l.subList(limit, l.size());
+        }
+        while (l.size() > 0);
+        return res;
+    }
+    
+    /**
+     * 拆分LIST，每个LIST最大容量为size个
+     * 
+     * @param <E>
+     * @param srcList
+     *            要拆分的LIST
+     * @param size
+     *            最大容量
+     * @return List<List<E>>
+     */
+    public static <E> List<List<E>> splitCollection(Collection<E> srcList, int size)
+    {
+        List<List<E>> desList = new ArrayList<List<E>>();
+        // desList.clear();
+        int count = 0;
+        List<E> tempList = null;
+        for (E e : srcList)
+        {
+            if (count % size == 0)
+            {
+                tempList = new ArrayList<E>();
+                desList.add(tempList);
+            }
+            count++;
+            tempList.add(e);
+        }
+        return desList;
+    }
+
+    /**
+     * 将传入的数组对象，保存到一个Set集合中。
+     * @param o
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> Set<T> asSet(T... o)
+    {
+        Set<T> res = new HashSet<T>();
+        res.addAll(Arrays.asList(o));
+        return res;
+    }
+    
+    /**
+     * 将传入的数组对象，保存到一个ArrayList集合中。
+     * @param ts
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> ArrayList<T> asList(T... ts)
+    {
+        ArrayList<T> arrayList = new ArrayList<T>();
+        if (null == ts)
+        {
+            return arrayList;
+        }
+        for (int i = 0; i < ts.length; i++)
+        {
+            arrayList.add(ts[i]);
+        }
+        return arrayList;
+    }
+    
+    /**
+     * 转换集合类型
+     * 
+     * @param items
+     *            源集合
+     * @param destType
+     *            目标类型
+     * @param includeSuperClass
+     *            是否包括父类字段，直到Object
+     * @param replaceWhenNull
+     *            当模板值为null时，是否替换
+     * @param excludeFieldArray
+     *            排除的字段
+     * @return 转换类型后的集合
+     */
+    public static <T> Collection<T> convertCollectionTypes(Collection<?> items,
+            Class<T> destType, boolean includeSuperClass,
+            boolean replaceWhenNull, String... excludeFieldArray)
+    {
+        ArrayList<T> result = new ArrayList<T>();
+        if (null == items)
+        {
+            return result;
+        }
+        for (Object obj : items)
+        {
+            if (null == obj)
+            {
+                continue;
+            }
+            try
+            {
+                T t = destType.newInstance();
+                ReflectUtil.updateObjFromOther(t, obj, includeSuperClass,
+                        replaceWhenNull, excludeFieldArray);
+                result.add(t);
+            }
+            catch (Exception e)
+            {
+                continue;
+            }
+        }
+        return result;
+    }
+
+    
+    
 }

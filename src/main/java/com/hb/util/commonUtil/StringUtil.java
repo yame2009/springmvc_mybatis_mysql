@@ -5,27 +5,21 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.util.StringUtils;
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.util.StringUtils;
 
 //import org.springframework.web.bind.ServletRequestUtils;
 
@@ -80,6 +74,58 @@ public class StringUtil extends StringUtils {
 		}
 		return result;
 	}
+	
+	/** 
+     * 方法名：replace 参数：String line传入需要处理的行字符串 功能： 全角半角转换 
+     *  
+     * @author MzyAiLqq 
+     *  
+     */  
+	public static String replaceToFull(String line) {  
+        // 创建一个HashMap用来存储全角字符和半角字符的对应关系  
+        // 每个entry中的key为全角字符，value为半角字符  
+        HashMap<String, String> map = new HashMap<String, String>();  
+        map.put("，", ",");  
+        map.put("。", ".");  
+        map.put("〈", "<");  
+        map.put("〉", ">");  
+        map.put("｜", "|");  
+        map.put("《", "<");  
+        map.put("》", ">");  
+        map.put("［", "[");  
+        map.put("］", "]");  
+        map.put("？", "?");  
+        map.put("＂", "\"");  
+        map.put("：", ":");  
+        map.put("﹑", ",");  
+        map.put("（", "(");  
+        map.put("）", ")");  
+        map.put("【", "[");  
+        map.put("】", "]");  
+        map.put("－", "-");  
+        map.put("￣", "~");  
+        map.put("！", "!");  
+        map.put("｀", "`");  
+        map.put("１", "1");  
+        map.put("２", "2");  
+        map.put("３", "3");  
+        map.put("４", "4");  
+        map.put("５", "5");  
+        map.put("６", "6");  
+        map.put("７", "7");  
+        map.put("８", "8");  
+        map.put("９", "9");  
+        int length = line.length();  
+        for (int i = 0; i < length; i++) {  
+            // 每次截取一个字符进行判断  
+            String charat = line.substring(i, i + 1);  
+            if (map.get(charat) != null) {  
+                line = line.replace(charat, (String) map.get(charat));  
+            }  
+        }  
+        // 返回转换后的字符行  
+        return line;  
+    }  
 
 	/**
 	 * 将字符串转移为ASCII码
@@ -303,14 +349,6 @@ public class StringUtil extends StringUtils {
 		return json;
 	}
 
-	/**
-	 * 取随机的32位uuid
-	 * 
-	 * @return
-	 */
-	public static String getUUID() {
-		return UUID.randomUUID().toString().replaceAll("-", "");
-	}
 
 	/**
 	 * 判断一个字符串是不是空或者为""
@@ -326,133 +364,6 @@ public class StringUtil extends StringUtils {
 		}
 	}
 
-	/**
-	 * 把Map<String,Object>处理成实体类
-	 * 
-	 * @param clazz
-	 *            想要的实体类
-	 * @param list
-	 *            包含信息的列表
-	 * @return
-	 */
-	public static <T> List<T> mapToList(Class<T> clazz,
-			List<Map<String, Object>> list) {
-
-		if (null == list || list.size() == 0) {
-			return null;
-		}
-		List<T> result = new ArrayList<T>();
-		Map<String, Object> map;
-		for (Iterator<Map<String, Object>> iter = list.iterator(); iter
-				.hasNext();) {
-			map = iter.next();
-			result.add(mapToObject(clazz, map));
-		}
-		return result;
-	}
-
-	/**
-	 * 把Map<String,Object>处理成实体类
-	 * 
-	 * @param clazz
-	 *            想要的实体类
-	 * @param map
-	 *            包含信息的Map对象
-	 * @return
-	 */
-	public static <T> T mapToObject(Class<T> clazz, Map<String, Object> map) {
-
-		if (null == map) {
-			return null;
-		}
-
-		Field[] fields = clazz.getDeclaredFields(); // 取到所有类下的属性，也就是变量名
-		Field field;
-		T o = null;
-		try {
-			o = clazz.newInstance();
-		} catch (InstantiationException e1) {
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			e1.printStackTrace();
-		}
-		for (int i = 0; i < fields.length; i++) {
-			field = fields[i];
-			String fieldName = field.getName();
-			// 把属性的第一个字母处理成大写
-			String stringLetter = fieldName.substring(0, 1).toUpperCase();
-			// 取得set方法名，比如setBbzt
-			String setName = "set" + stringLetter + fieldName.substring(1);
-			// 真正取得get方法。
-			Method setMethod = null;
-			Class<?> fieldClass = field.getType();
-			try {
-				Object value = map.get(fieldName);
-				if (value != null && String.valueOf(value).trim().length() > 0
-						&& ReflectUtil.isHaveSuchMethod(clazz, setName)) {
-					if (fieldClass == String.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o, String.valueOf(value));// 为其赋值
-					} else if (fieldClass == Integer.class
-							|| fieldClass == int.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o,
-								Integer.parseInt(String.valueOf(value)));// 为其赋值
-					} else if (fieldClass == Boolean.class
-							|| fieldClass == boolean.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o,
-								Boolean.getBoolean(String.valueOf(value)));// 为其赋值
-					} else if (fieldClass == Short.class
-							|| fieldClass == short.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o,
-								Short.parseShort(String.valueOf(value)));// 为其赋值
-					} else if (fieldClass == Long.class
-							|| fieldClass == long.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o,
-								Long.parseLong(String.valueOf(value)));// 为其赋值
-					} else if (fieldClass == Double.class
-							|| fieldClass == double.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o,
-								Double.parseDouble(String.valueOf(value)));// 为其赋值
-					} else if (fieldClass == Float.class
-							|| fieldClass == float.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o,
-								Float.parseFloat(String.valueOf(value)));// 为其赋值
-					} else if (fieldClass == BigInteger.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o, BigInteger.valueOf(Long
-								.parseLong(String.valueOf(value))));// 为其赋值
-					} else if (fieldClass == BigDecimal.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						setMethod.invoke(o, BigDecimal.valueOf(Double
-								.parseDouble(String.valueOf(value))));// 为其赋值
-					} else if (fieldClass == Date.class) {
-						setMethod = clazz.getMethod(setName, fieldClass);
-						if (map.get(fieldName).getClass() == java.sql.Date.class) {
-							setMethod.invoke(o, new Date(
-									((java.sql.Date) value).getTime()));// 为其赋值
-						} else if (map.get(fieldName).getClass() == java.sql.Time.class) {
-							setMethod.invoke(o, new Date(
-									((java.sql.Time) value).getTime()));// 为其赋值
-						} else if (map.get(fieldName).getClass() == java.sql.Timestamp.class) {
-							setMethod.invoke(o, new Date(
-									((java.sql.Timestamp) value).getTime()));// 为其赋值
-						}
-					} else if (fieldClass == List.class) {
-
-					}
-				}
-			} catch (Exception e) {
-			}
-
-		}
-		return o;
-	}
 
 	// /**
 	// * 本方法封装了往前台设置的header,contentType等信息
@@ -746,33 +657,6 @@ public class StringUtil extends StringUtils {
 			sb = sb.delete(length - 1, length);
 		}
 		return sb.toString();
-	}
-
-	/**
-	 * 生成六位随机数
-	 * 
-	 * @return
-	 */
-	public static Integer getRandom() {
-		Random ran = new Random();
-		int r = 0;
-		m1: while (true) {
-			int n = ran.nextInt(1000000);
-			r = n;
-			int[] bs = new int[6];
-			for (int i = 0; i < bs.length; i++) {
-				bs[i] = n % 10;
-				n /= 10;
-			}
-			Arrays.sort(bs);
-			for (int i = 1; i < bs.length; i++) {
-				if (bs[i - 1] == bs[i]) {
-					continue m1;
-				}
-			}
-			break;
-		}
-		return r;
 	}
 
 	/**
@@ -1852,9 +1736,173 @@ public class StringUtil extends StringUtils {
         input = input.replaceAll("\n", "<br/>");  //不能把\n的过滤放在前面，因为还要对<和>过滤，这样就会导致<br/>失效了
         return input;
     }
+    
+    /**
+     * 获取字符串的长度
+     * 
+     * @param s
+     *            字符串内容
+     * @param hasChinese
+     *            是否计算中午字
+     * @return 2014年5月19日
+     */
+    public static int getStringLen(String s, boolean hasChinese)
+    {
+        int len = 0; // 保存实际长度的字符串
+        if (s == null || s.length() == 0)
+        {
+            len = 0; // 是空值或空字符串长度为0
+        }
+        else
+        {
+            for (int i = 0; i < s.length(); i++)
+            {
+                char c = s.charAt(i);
+                if (hasChinese && CommonUtil.isChinese(c))
+                { // 是中文汉字和符号
+                    len = len + 2; // 长度加2
+                }
+                else
+                {
+                    len++;// 其它长度加1
+                }
+            }
+        }
+        return len;
+    }
+    
+    
+	/**
+     * 生成N位的随机数
+     *
+     * @param len
+     * @param base16
+     * @return
+     */
+    public static String genRnd(int len, boolean base16)
+    {
+        char send[] = null;
+        if (base16)
+        {
+            send = new char[]
+            { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C',
+                    'D', 'E', 'F' };
+        }
+        else
+        {
+            send = new char[]
+            { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        }
+
+        char tempNo;
+        int idx1, idx2;
+        int sendlen = send.length;
+        Random r = new Random();
+        for (int i = 0; i < sendlen; i++) // 随机交换send.length次
+        {
+            idx1 = Math.abs(r.nextInt()) % (sendlen - 1); // 随机产生一个位置
+            idx2 = Math.abs(r.nextInt()) % (sendlen - 1); // 随机产生另一个位置
+            if (idx1 == idx2)
+            {
+                continue;
+            }
+            tempNo = send[idx1];
+            send[idx1] = send[idx2];
+            send[idx2] = tempNo;
+        }
+        StringBuffer ns = new StringBuffer();
+        for (int i = 0; i < len; i++) // 随机交换send.length次
+        {
+            if (i >= sendlen)
+            {
+                ns.append(send[i % sendlen]);
+            }
+            else
+            {
+                ns.append(send[i]);
+            }
+        }
+        return ns.toString();
+    }
+    
+    /**
+	 * 生成六位随机数
+	 * 
+	 * @return
+	 */
+	public static Integer getRandom() {
+		Random ran = new Random();
+		int r = 0;
+		m1: while (true) {
+			int n = ran.nextInt(1000000);
+			r = n;
+			int[] bs = new int[6];
+			for (int i = 0; i < bs.length; i++) {
+				bs[i] = n % 10;
+				n /= 10;
+			}
+			Arrays.sort(bs);
+			for (int i = 1; i < bs.length; i++) {
+				if (bs[i - 1] == bs[i]) {
+					continue m1;
+				}
+			}
+			break;
+		}
+		return r;
+	}
+	
+	/**
+     * 判断字符串是否只包含英文字符和数字
+     * 
+     * @param str
+     * @return false,表示str 中包含非英文和数字字符。
+     */
+    public static boolean isNumberAndEnglish(String str)
+    {
+        if (isEmpty(str))
+        {
+            return false;
+        }
+
+        String tempPattern = "^[0-9A-Za-z]+$";
+
+        Pattern pattern = Pattern.compile(tempPattern);
+        Matcher isNum1 = pattern.matcher(str);
+
+        if (!isNum1.matches())
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * uuid
+     * @return
+     */
+    public static String getUUID()
+    {
+        String uuid = UUID.randomUUID().toString();
+        return uuid.substring(0, 8) + uuid.substring(9, 13)
+                + uuid.substring(14, 18) + uuid.substring(19, 23)
+                + uuid.substring(24);
+    }
+    
+	/**
+	 * 取随机的32位uuid
+	 * 
+	 * @return
+	 */
+	public static String getUUID32() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
 
 	public static void main(String[] args) {
 		System.out.println(isBlank("  \ff" + ""));
 	}
+	
+	
 
 }

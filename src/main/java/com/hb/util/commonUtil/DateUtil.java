@@ -22,15 +22,44 @@ public class DateUtil {
 	 * Logger for this class
 	 */
 	private static final Logger log = LoggerFactory.getLogger(DateUtil.class);
+	
+	 public static final int YEAR = Calendar.YEAR;
+	    public static final int MONTH = Calendar.MONTH;
+	    public static final int DAY_OF_MONTH = Calendar.DAY_OF_MONTH;
+	    public static final int HOUR_OF_DAY = Calendar.HOUR_OF_DAY;
+	    public static final int MINUTE = Calendar.MINUTE;
+	    public static final int SECOND = Calendar.SECOND;
+	    /**  年-月-日 时:分:秒 毫秒  */
+	    public static final String fmt_FullTime = "yyyyMMddHHmmssSSS";
+	    /** 年-月-日 时:分:秒 毫秒 */
+	    public static final String fmt_yMdHmsSTime = "yyyy-MM-dd HH:mm:ss SSS";
+	    /** 年-月-日 时:分:秒,时间格式：yyyy-MM-dd HH:mm:ss */
+	    public static final String fmt_yMdHmsTime = "yyyy-MM-dd HH:mm:ss";
+	    /** 年-月-日 时:分 ,时间格式：yyyy-MM-dd HH:mm */
+	    public static final String fmt_yMdHmTime = "yyyy-MM-dd HH:mm";
+	    /** 年-月-日,时间格式：yyyy-MM-dd */
+	    public static final String fmt_yMdTime = "yyyy-MM-dd";
+	    /** 年-月 */
+	    public static final String fmt_YMTime = "yyyy-MM";
+	    /** 月-日 */
+	    public static final String fmt_MdTime = "MM-dd";
+	    /** 年月日 */
+	    public static final String fmt_yMdDate = "yyyyMMdd";
+	    /**  时分秒 */
+	    public static final String fmt_Onlytime = "HH:mm:ss";
+
+	    /** 下单：年月日格式  */
+	    public static final String fmt_yMdTime4Order = "MM月dd日";
 
 	/** 时间格式：yyyy-MM-dd  */
-	public static final String FORMATER_YYYY_MM_DD = "yyyy-MM-dd";
+	public static final String FORMATER_YYYY_MM_DD = fmt_yMdTime;
 	
 	/** 时间格式：yyyy-MM-dd HH:mm */
-	public static final String FORMATER_YYYY_MM_DD_HH_MM = "yyyy-MM-dd HH:mm";
+	public static final String FORMATER_YYYY_MM_DD_HH_MM = fmt_yMdHmTime;
 	
 	/** 时间格式：yyyy-MM-dd HH:mm:ss */
-	public static final String FORMATER_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+	public static final String FORMATER_YYYY_MM_DD_HH_MM_SS = fmt_yMdHmsTime;
+	
 
 	/**
 	 * 日
@@ -95,8 +124,12 @@ public class DateUtil {
 		return formatFromDate(date,FORMATER_YYYY_MM_DD);
 	}
 
-	public static Date getCurrentDate() {
-		Date now = getCurrentDateTime();
+	/**
+	 * 当天，精确到天
+	 * @return
+	 */
+	public static Date getCurrentDay() {
+		Date now = getCurrentDate();
 		return strToDate(dateToStr(now));
 	}
 
@@ -130,9 +163,10 @@ public class DateUtil {
 	}
 
 	/**
+	 * 当前时间，精确到分秒
 	 * @return
 	 */
-	public static Date getCurrentDateTime() {
+	public static Date getCurrentDate() {
 		java.util.Calendar calendar = java.util.Calendar.getInstance();
 		return calendar.getTime();
 	}
@@ -202,6 +236,112 @@ public class DateUtil {
 		l = l / (1000 * 60 * 60 * 24l);
 		return l;
 	}
+	
+	 /**
+     * 比较两个日期相隔的天数
+     *
+     * @param date1
+     * @param date2
+     * @return date2-date1
+     */
+    public static int getDiffDays(Date date1, Date date2)
+    {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        // different date might have different offset
+        cal1.setTime(date1);
+        long ldate1 = date1.getTime() + cal1.get(Calendar.ZONE_OFFSET)
+                + cal1.get(Calendar.DST_OFFSET);
+
+        cal2.setTime(date2);
+        long ldate2 = date2.getTime() + cal2.get(Calendar.ZONE_OFFSET)
+                + cal2.get(Calendar.DST_OFFSET);
+
+        // Use integer calculation, truncate the decimals
+        int hr1 = (int) (ldate1 / 3600000); // 60*60*1000
+        int hr2 = (int) (ldate2 / 3600000);
+
+        int days1 = (int) hr1 / 24;
+        int days2 = (int) hr2 / 24;
+
+        int dateDiff = days2 - days1;
+        return dateDiff;
+    }
+    
+    /**
+     * 比较两个日期相隔的月数
+     *
+     * @param date1
+     * @param date2
+     * @return date2-date1
+     */
+    public static int getDiffMonths(Date date1, Date date2)
+    {
+        Calendar cal1 = Calendar.getInstance();
+
+        Calendar cal2 = Calendar.getInstance();
+
+        cal1.setTime(date1);
+
+        cal2.setTime(date2);
+
+        return (cal2.get(Calendar.YEAR) - cal1.get(Calendar.YEAR)) * 12
+                + (cal2.get(Calendar.MONTH) - cal1.get(Calendar.MONTH));
+    }
+    
+    /**
+     * 比较两个日期 是否在同一个月份内
+     *
+     * @param date1
+     * @param date2
+     * @return boolean ：true,在同一个月份内。
+     */
+    public static boolean isSameMonth(Date date1, Date date2)
+    {
+        Calendar cal1 = Calendar.getInstance();
+
+        Calendar cal2 = Calendar.getInstance();
+
+        cal1.setTime(date1);
+
+        cal2.setTime(date2);
+
+        if (cal1.get(Calendar.YEAR) != cal2.get(Calendar.YEAR))
+        {
+            return false;
+        }
+        else if (cal1.get(Calendar.MONTH) != cal2.get(Calendar.MONTH))
+        {
+            return false;
+        }
+
+        return true;
+    }
+    
+    /**
+     * 得到前几个星期的周一的日期
+     *
+     * @param amount
+     * @return
+     */
+    public static Date getAddingWeekFirstDay(int amount)
+    {
+        Date date = getCurrentDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        // 因为按中国礼拜一作为第一天所以这里减1
+        int week = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        if (week == 0)
+        {
+            week = 7;
+        }
+        int step = (1 - week) + 7 * amount;
+
+        calendar.add(Calendar.DAY_OF_MONTH, step);
+        return calendar.getTime();
+    }
+
+
 
 	/**
 	 * 判断某字符串是否是日期类型
@@ -220,6 +360,45 @@ public class DateUtil {
 		}
 	}
 
+	  /**
+     * string is date
+     *
+     * @param str
+     *            checked string
+     * @param formatStr
+     *            format
+     * @return true:is date | false:is not date
+     */
+    public static boolean isDate(String str, String formatStr)
+    {
+        if (str == null || "".equals(str))
+        {
+            return false;
+        }
+
+        if (formatStr == null || "".equals(formatStr))
+        {
+            formatStr = fmt_yMdTime;
+        }
+
+        if (str.length() != formatStr.length())
+        {
+            return false;
+        }
+
+        SimpleDateFormat format = new SimpleDateFormat(formatStr);
+        try
+        {
+            // 这里用equals主要是为了防止像20121032这样数据会转为20121101
+            return str.equals(format.format(format.parse(str)));
+        }
+        catch (ParseException e)
+        {
+            return false;
+        }
+    }
+
+    
 	/**
 	 * 获取当前日期是星期几<br>
 	 * 
@@ -254,6 +433,45 @@ public class DateUtil {
 		result &= date.getDate() == now.getDate();
 		return result;
 	}
+	
+	/**
+     * 比较两个日期 是否在同一个天
+     *
+     * @param date1
+     * @param date2
+     * @return boolean ：true,在同一个月份内。
+     */
+    public static boolean isSameDay(Date date1, Date date2)
+    {
+        Calendar cal1 = Calendar.getInstance();
+
+        Calendar cal2 = Calendar.getInstance();
+
+        cal1.setTime(date1);
+
+        cal2.setTime(date2);
+
+        System.out.println("cal1.get(Calendar.DAY_OF_MONTH)"
+                + cal1.get(Calendar.DAY_OF_MONTH));
+        System.out.println("cal2.get(Calendar.DAY_OF_MONTH)"
+                + cal2.get(Calendar.DAY_OF_MONTH));
+
+        if (cal1.get(Calendar.YEAR) != cal2.get(Calendar.YEAR))
+        {
+            return false;
+        }
+        else if (cal1.get(Calendar.MONTH) != cal2.get(Calendar.MONTH))
+        {
+            return false;
+        }
+        else if (cal1.get(Calendar.DAY_OF_MONTH) != cal2
+                .get(Calendar.DAY_OF_MONTH))
+        {
+            return false;
+        }
+
+        return true;
+    }
 
 	/**
 	 * 两个日期相减，取天数
@@ -593,9 +811,6 @@ public class DateUtil {
 		return yyyy;
 	}
 
-	public static Date getNow() {
-		return new Date();
-	}
 
 	/**
 	 * 把日期格式为rss格式兼容的字符串
@@ -1065,6 +1280,237 @@ public class DateUtil {
     public static String formatDuring(Date begin, Date end) {  
         return formatDuring(end.getTime() - begin.getTime());  
     } 
+    
+    /**
+     * 得到指定月的第一天和最后一天，如2009-01-01 到 2009-01-31
+     *
+     * @param ym
+     * @return
+     */
+    public static String[] getIntervalDayOfMonth(String ym)
+    {
+        String[] intervalDay = new String[2];
+        String cYm = DateUtil.formatFromDate(new Date(), DateUtil.fmt_YMTime);
+        if (ym.compareTo(cYm) == 0)
+        {
+            intervalDay[0] = ym + "-01";
+            intervalDay[1] = ym + "-" + getCurrentDay();
+        }
+        else
+        {
+            intervalDay[0] = ym + "-01";
+            intervalDay[1] = ym
+                    + "-"
+                    + getMaxDayOfMonth(
+                            Integer.parseInt(ym.substring(0, ym.indexOf("-"))),
+                            Integer.parseInt(ym.substring(ym.indexOf("-") + 1)));
+        }
+        return intervalDay;
+    }
+    
+    /**
+     * 得到指定月的天数
+     *
+     * @param year
+     * @param month
+     * @return
+     */
+    public static int getMaxDayOfMonth(int year, int month)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month - 1);
+        int day = calendar.getActualMaximum(Calendar.DATE);
+        return day;
+    }
+    
+    /**
+     * 将Date对象转换为Calendar
+     * 
+     * @param d
+     * @return 2014年7月8日
+     */
+    public static Calendar getCalendarByDate(Date d)
+    {
+        Calendar newStartCal = Calendar.getInstance();
+        newStartCal.setTime(d);
+
+        return newStartCal;
+    }
+    
+    /**
+     * 将“2012-11-01”转化为calendar对象 
+     *
+     * @param ymd
+     *            “2012-11-01”格式字符串
+     * @param isEnd
+     *            开始时间，还是结束时间。
+     * @param isV
+     *            是否需要验证格式
+     * @return Calendar
+     */
+    public static Calendar getCalendarByYMD(String ymd, boolean isEnd,
+            boolean isV)
+    {
+        if (isV && !isDate(ymd, fmt_yMdTime))
+        {
+            return null;
+        }
+
+        String[] ymdArray = ymd.split("-");
+
+        Calendar calendar = Calendar.getInstance();
+
+        if (!isEnd)
+        {
+            calendar.set(Integer.parseInt(ymdArray[0]),
+                    Integer.parseInt(ymdArray[1]) - 1,
+                    Integer.parseInt(ymdArray[2]), 0, 0, 0);
+        }
+        else
+        {
+            calendar.set(Integer.parseInt(ymdArray[0]),
+                    Integer.parseInt(ymdArray[1]) - 1,
+                    Integer.parseInt(ymdArray[2]), 23, 59, 59);
+        }
+
+        return calendar;
+    }
+
+    /**
+     * 将“2012-11-01”转化为calendar对象 
+     *
+     * @param ymd
+     *            “2012-11-01”格式字符串
+     * @param isEnd
+     *            开始时间，还是结束时间。
+     * @param isV
+     *            是否需要验证格式
+     * @return Calendar
+     */
+    public static Calendar getDateByYMD(String ymd, boolean isEnd, boolean isV)
+    {
+        return getDateByYMD(ymd, isEnd, isV, fmt_yMdTime);
+    }
+
+    /**
+     * 将“2012-11-01”转化为calendar对象 
+     *
+     * @param ymd
+     *            “2012-11-01”格式字符串
+     * @param isEnd
+     *            开始时间，还是结束时间。
+     * @param isV
+     *            是否需要验证格式
+     * @return Calendar
+     */
+    public static Calendar getDateByYMD(String ymd, boolean isEnd, boolean isV,
+            String fmt)
+    {
+        if (isV && !isDate(ymd, fmt))
+        {
+            return null;
+        }
+
+        String[] ymdArray = ymd.split("-");
+
+        Calendar calendar = Calendar.getInstance();
+
+        if (!isEnd)
+        {
+            calendar.set(Integer.parseInt(ymdArray[0]),
+                    Integer.parseInt(ymdArray[1]) - 1,
+                    Integer.parseInt(ymdArray[2]), 0, 0, 0);
+        }
+        else
+        {
+            calendar.set(Integer.parseInt(ymdArray[0]),
+                    Integer.parseInt(ymdArray[1]) - 1,
+                    Integer.parseInt(ymdArray[2]), 23, 59, 59);
+        }
+
+        return calendar;
+    }
+
+    /**
+     * 将“2012-11-01”转化为calendar对象 
+     *
+     * @param ymd
+     *            “2012-11-01”格式字符串
+     * @param isEnd
+     *            开始时间，还是结束时间。
+     * @param isV
+     *            是否需要验证格式
+     * @return Calendar
+     */
+    public static Date getDateByYMD(Date ymd, boolean isEnd, boolean isV)
+    {
+        Calendar calendar = getDateByYMD(getCalendarStr(ymd, fmt_yMdTime),
+                isEnd, isV);
+        return calendar.getTime();
+    }
+
+    /**
+     * 转换 yyyy-MM-dd HH:mm 格式
+     * 
+     * @param ymd
+     *            “2012-11-01”格式字符串
+     * @param isEnd
+     *            开始时间，还是结束时间。
+     * @param isV
+     *            是否需要验证格式
+     * @return Calendar
+     */
+    public static Date getDateByYMDHM(Date ymd)
+    {
+        String calendarStr = getCalendarStr(ymd, fmt_yMdHmTime);
+        SimpleDateFormat sdf = new SimpleDateFormat(fmt_yMdHmTime);
+        try
+        {
+            return sdf.parse(calendarStr);
+        }
+        catch (ParseException e)
+        {
+            return null;
+        }
+    }
+    
+    /**
+     * 将Calendar 日期转为为String字符串
+     *
+     * @param strDate
+     * @param fmt
+     * @return String
+     */
+    public static String getCalendarStr(Calendar date, String fmt)
+    {
+        if (date == null)
+        {
+            return null;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat(fmt);
+        return sdf.format(date.getTime());
+    }
+
+    /**
+     * 将Calendar 日期转为为String字符串
+     *
+     * @param strDate
+     * @param fmt
+     * @return String
+     */
+    public static String getCalendarStr(Date date, String fmt)
+    {
+        if (date == null)
+        {
+            return null;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat(fmt);
+        return sdf.format(date);
+    }
+
 
 	
 	public static void main(String[] args) {
