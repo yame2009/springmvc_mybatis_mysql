@@ -20,6 +20,9 @@
 --java中常用的工具类（二）  http://blog.csdn.net/zsw12013/article/details/36685931
 --java中常用的工具类（三） http://blog.csdn.net/zsw12013/article/details/36686809
 
+--Java四种线程池的使用   http://blog.csdn.net/hupitao/article/details/24453083
+--java文件传输  http://www.cnblogs.com/phinecos/archive/2007/09/21/902016.html
+
 --项目中用到的logback列子   http://blog.csdn.net/haidage/article/details/6797039
 --日志组件logback的介绍及配置使用方法(二) http://blog.csdn.net/zhuyucheng123/article/details/21524403
 
@@ -141,6 +144,9 @@ SpringMVC整合Mongodb开发,高级操作  http://www.cnblogs.com/dennisit/p/337
 
 MongoDB学习笔记   http://limingnihao.iteye.com/category/291266
 
+BuguMongo是一个MongoDB Java开发框架，集成了DAO、Query、Lucene、GridFS等功能。  http://201212262922.iteye.com/blog/2104055
+连接MongoDB数据库的代码应该写在哪里？  http://xbwen.iteye.com/blog/1222561
+
 mongodb高级操作及在Java企业级开发中的应用.   http://www.cnblogs.com/dennisit/archive/2013/01/29/2881006.html
 
 mongodb管理与安全认证    http://www.cnblogs.com/dennisit/archive/2013/02/22/2922906.html
@@ -175,7 +181,7 @@ java连接各种数据库代码大全  http://www.cnblogs.com/langtianya/p/31458
 http://blog.csdn.net/isea533/article/details/9140313
 
 
-
+互联网 免费的WebService接口  http://blog.csdn.net/guobing965816/article/details/7728317
 
 
 
