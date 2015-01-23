@@ -184,7 +184,22 @@ http://blog.csdn.net/isea533/article/details/9140313
 互联网 免费的WebService接口  http://blog.csdn.net/guobing965816/article/details/7728317
 
 
+BuguMongo是一个轻量级的MongoDB Java开发框架，它的主要功能包括：
+https://code.google.com/p/bugumongo/ 
+https://github.com/xbwen/bugu-mongo
+http://201212262922.iteye.com/blog/2100195 作者博客
+基于注解的对象-文档映射（Object-Document Mapping，简称ODM）。
+DAO支持。提供了大量常用的DAO方法。
+Query支持。提供了生成查询的简便方法。
+基于注解的Lucene索引。
+简单方便的Lucene搜索。支持关键词高亮显示。
+功能强大的GridFS文件系统管理。支持文件夹功能，支持文件的重命名、移动、排序等操作。
+简单方便的GridFS文件上传、读取。支持图片加水印、图片压缩。能用HTTP获取文件，并能使用HTTP缓存。
+使用BuguMongo，可以让你：
 
+用面向对象的编程思维操纵MongoDB数据库。
+摆脱底层细节处理，专注于业务逻辑。
+大大减少代码量，提高开发效率。
 
 
 
