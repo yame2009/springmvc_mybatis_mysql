@@ -107,9 +107,9 @@ java 技术点大全网站：
  
  
  
- druid简单教程  http://www.cnblogs.com/blogsme/archive/2013/05/13/3075308.html
+--druid简单教程  http://www.cnblogs.com/blogsme/archive/2013/05/13/3075308.html
  
- druid 官网资料： https://github.com/alibaba/druid/wiki
+--druid 官网资料： https://github.com/alibaba/druid/wiki
  
  
  MyBatis简介与配置MyBatis+Spring+MySql  http://limingnihao.iteye.com/blog/781671
@@ -121,15 +121,17 @@ MyBatis 一级和二级缓存    http://www.cnblogs.com/zemliu/p/3239014.html
 利用MyBatis的动态SQL特性抽象统一SQL查询接口  http://www.cnblogs.com/zemliu/p/3248171.html
 
 
-springmvc整合redis架构搭建实例 http://www.cnblogs.com/dennisit/p/3614521.html
+--springmvc整合redis架构搭建实例 http://www.cnblogs.com/dennisit/p/3614521.html
 
-Redis系统性介绍  http://www.cnblogs.com/yuanermen/p/3953724.html
+--Redis系统性介绍  http://www.cnblogs.com/yuanermen/p/3953724.html
 
-Redis之七种武器  http://www.cnblogs.com/yuanermen/p/3953749.html
+--Redis之七种武器  http://www.cnblogs.com/yuanermen/p/3953749.html
 
-jedis基本介绍 http://my.oschina.net/boomya/blog/68375
-
-
+--jedis基本介绍 http://my.oschina.net/boomya/blog/68375
+--Redis 数据类型 http://budairenqin.iteye.com/blog/1734166
+--redis.conf 配置参数说明   http://blog.csdn.net/huahuagongzi99999/article/details/13293487
+--Redis Java客户端jedis工具类以及Redis实现的跨jvm的锁  http://budairenqin.iteye.com/blog/1734193
+--征服 Redis + Jedis http://snowolf.iteye.com/blog/1633196
 
 SpringMVC整合Shiro   http://blog.csdn.net/jadyer/article/details/12208847#comments
 
@@ -139,6 +141,10 @@ Apache Shiro 使用手册（一）Shiro架构介绍  http://kdboy.iteye.com/blog
 SpringMVC整合Mongodb开发 架构搭建  http://www.cnblogs.com/dennisit/p/3372568.html
 
 SpringMVC整合Mongodb开发,高级操作  http://www.cnblogs.com/dennisit/p/3374297.html
+
+ Spring整合- mongodb http://blog.csdn.net/java2000_wl/article/details/7983547
+ 
+  mongodb- Java API 查询操作 http://blog.csdn.net/java2000_wl/article/details/7982934
 
  MongoDB Core Examples  http://www.mkyong.com/tutorials/java-mongodb-tutorials/#spring-mongodb
 
@@ -172,9 +178,13 @@ sql语句+数据库   http://www.cnblogs.com/langtianya/category/415632.html
 
 H2数据库使用,h2只有一个jar文件，十分适合作为嵌入式数据库试用  http://www.cnblogs.com/langtianya/p/3807639.html
 
+H2数据库攻略  http://www.cnblogs.com/gao241/p/3480472.html
+
 初识使用Apache MINA 开发高性能网络应用程序   http://www.cnblogs.com/dennisit/archive/2013/02/21/2920693.html
 
 
+Jetty服务器嵌入式Web容器攻略 http://www.cnblogs.com/gao241/p/3501578.html
+ 
 java连接各种数据库代码大全  http://www.cnblogs.com/langtianya/p/3145878.html
 
 中国行政区划代码数据库文件 - 最新县及县以上行政区划代码（截止2012年10月31日）
