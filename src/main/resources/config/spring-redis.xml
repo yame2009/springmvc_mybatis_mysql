@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<context:property-placeholder location="classpath:config/redis.properties" />
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<!-- jedis版本2.2.0之后的属性（之前的属性名maxActive）。 maxTotal 控制一个pool可分配多少个jedis实例， 
+			通过pool.getResource()来获取； //如果赋值为-1，则表示不限制； 如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)。 -->
+		<property name="maxTotal" value="${redis.pool.maxTotal}" />
+		<property name="maxIdle" value="${redis.pool.maxIdle}" />
+		<!-- maxWaitMillis，1000*100.表示当borrow(引入)一个jedis实例时， 最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException； -->
+		<property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}" />
+		<property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+		<property name="testOnReturn" value="${redis.pool.testOnReturn}" />
+	</bean>
+
+	<!-- 这是 ShardedJedisPool 的配置方法 -->
+	<!--
+	 <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool"
+		scope="singleton">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1">
+			<list>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg name="host" value="${redis.host}" />
+					<constructor-arg name="port" value="${redis.port}" />
+					<constructor-arg name="timeout" value="${redis.timeout}" />
+					<constructor-arg name="weight" value="1" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+	 -->
+
+
+	<!-- 下面是spring-data-redis.jar 包的配置方法 -->
+	<bean id="jedisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="hostName" value="${redis.host}" />
+		<property name="port" value="${redis.port}" />
+		<property name="timeout" value="${redis.timeout}" />
+		<property name="poolConfig" ref="jedisPoolConfig" />
+	</bean>
+
+	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+		p:connection-factory-ref="jedisConnectionFactory" />
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+		p:connection-factory-ref="jedisConnectionFactory" />
+
+
+</beans>

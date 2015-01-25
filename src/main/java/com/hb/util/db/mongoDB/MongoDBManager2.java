@@ -1,4 +1,4 @@
-package com.hb.util.mongoDB;
+package com.hb.util.db.mongoDB;
 
 import java.util.ArrayList;  
 import java.util.HashMap;  

@@ -21,7 +21,7 @@
         @Transactional(rollbackFor={Exception.class}) 事务管理 
         @ResponseBody @Scope("prototype")设定bean的作用域
     -->
-	  <!-- 启用spring mvc 注解 -->
+	  <!-- 启用spring mvc 注解模式 -->
     <context:annotation-config />
     
     <!-- 设置使用注解的类所在的jar包  -->
@@ -40,9 +40,11 @@
    	<!-- 开启AOP监听 只对当前配置文件有效 -->
 	<!-- <aop:aspectj-autoproxy expose-proxy="true"/> -->
 	
-	<!-- <import resource="classpath:/config/spring-redis.xml"/> -->
+	 <bean id="userDao" class="com.hb.dao.redis.UserModelDaoImpl" />  
+	 
+	<import resource="classpath:/config/spring-redis.xml"/>
 	
-	<import resource="classpath:/config/spring-mybatis.xml"/>
+	<!-- <import resource="classpath:/config/spring-mybatis.xml"/> -->
 	
 	<!-- <import resource="classpath:/config/app-aop.xml"/> -->
 	

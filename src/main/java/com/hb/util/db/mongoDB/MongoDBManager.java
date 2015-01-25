@@ -1,4 +1,4 @@
-package com.hb.util.mongoDB;
+package com.hb.util.db.mongoDB;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
