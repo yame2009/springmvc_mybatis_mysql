@@ -22,6 +22,7 @@
 		<mysql.version>5.1.26</mysql.version>
 		<zxing.version>3.1.0</zxing.version>
 		<excel.poi.version>3.11</excel.poi.version>
+		<netty.version>4.0.25.Final</netty.version>
 	</properties>
 
 	<!-- 公司的内部的maven下载库 -->
@@ -427,6 +428,13 @@
 			<version>1.1</version>
 		</dependency>
 
+		<!-- 使用Spring+Maven配置Netty4 http://my.oschina.net/boomya/blog/139464  -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>${netty.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
