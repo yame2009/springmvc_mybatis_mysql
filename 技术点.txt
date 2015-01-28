@@ -166,11 +166,14 @@ CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/36
 
 
 --使用Spring+Maven配置Netty4   http://my.oschina.net/boomya/blog/139464
-
-
-Netty那点事（一）概述  http://my.oschina.net/flashsword/blog/162936
-
 --netty4.0研究之一  http://my.oschina.net/u/1384382/blog/170229
+
+Netty那点事（一）概述                http://my.oschina.net/flashsword/blog/162936
+Netty那点事（三）Channel与Pipeline   http://my.oschina.net/flashsword/blog?catalog=393528  
+
+Netty5入门学习笔记001 http://my.oschina.net/imhoodoo/blog/357007
+
+Mina系列文章索引  http://my.oschina.net/ielts0909/blog/92716
  
 
 sql语句+数据库   http://www.cnblogs.com/langtianya/category/415632.html
