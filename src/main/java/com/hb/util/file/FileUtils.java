@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  * @author 338342
  *
  */
-public class FileUtils extends org.apache.commons.io.IOUtils {
+public class FileUtils extends org.apache.commons.io.FileUtils {
 
 	private static final Logger log = LoggerFactory.getLogger(FileUtils.class);
 
