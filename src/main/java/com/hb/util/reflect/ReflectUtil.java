@@ -1,4 +1,4 @@
-package com.hb.util.commonUtil;
+package com.hb.util.reflect;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;

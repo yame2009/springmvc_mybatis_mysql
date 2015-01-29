@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.List;  
 import java.util.Map;  
 import java.util.Set;
+
+import com.hb.util.reflect.ReflectUtil;
   
 /**  
  * 集合(List,Map,Set)辅助类。  
