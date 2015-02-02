@@ -448,14 +448,27 @@
 			<artifactId>netty-all</artifactId>
 			<version>${netty.version}</version>
 		</dependency>
-		
-		<!-- jsoup（来自开源中国：http://www.oschina.net/p/jsoup/） 是一款 Java 的HTML 解析器，
-		可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，
-		可通过DOM，CSS以及类似于JQuery的操作方法来取出和操作数据。  -->
+
+		<!-- jsoup（来自开源中国：http://www.oschina.net/p/jsoup/） 是一款 Java 的HTML 解析器， 
+			可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API， 可通过DOM，CSS以及类似于JQuery的操作方法来取出和操作数据。 -->
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.8.1</version>
+		</dependency>
+
+		<!-- 高性能序列化框架FST,FST fast-serialization 是重新实现的 Java 快速对象序列化的开发包。序列化速度更快（2-10倍）、体积更小，而且兼容 JDK 原生的序列化。要求 JDK 1.7 支持。 -->
+		<dependency>
+			<groupId>de.ruedigermoeller</groupId>
+			<artifactId>fst</artifactId>
+			<version>2.19</version>
+		</dependency>
+
+		<!-- Kryo 是一个快速高效的Java对象图形序列化框架，主要特点是性能、高效和易用。该项目用来序列化对象到文件、数据库或者网络。 -->
+		<dependency>
+			<groupId>com.esotericsoftware.kryo</groupId>
+			<artifactId>kryo</artifactId>
+			<version>2.24.0</version>
 		</dependency>
 
 	</dependencies>
