@@ -2,6 +2,7 @@ package com.hb.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.scripting.xmltags.IfSqlNode;
@@ -12,6 +13,7 @@ import org.apache.ibatis.scripting.xmltags.WhereSqlNode;
 
 import com.github.abel533.mapper.MapperProvider;
 import com.github.abel533.mapperhelper.EntityHelper;
+import com.github.abel533.mapperhelper.EntityHelper.EntityColumn;
 import com.github.abel533.mapperhelper.MapperHelper;
 
 /**
@@ -46,7 +48,7 @@ public class HsqldbProvider extends MapperProvider {
                 + " FROM "
                 + tableName(entityClass)));
         //获取全部列
-        List<EntityHelper.EntityColumn> columnList = EntityHelper.getColumns(entityClass);
+        Set<EntityColumn> columnList = EntityHelper.getColumns(entityClass);
         List<SqlNode> ifNodes = new ArrayList<SqlNode>();
         boolean first = true;
         //对所有列循环，生成<if test="property!=null">[AND] column = #{property}</if>
