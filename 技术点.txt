@@ -133,6 +133,8 @@ MyBatis 一级和二级缓存    http://www.cnblogs.com/zemliu/p/3239014.html
 --Redis Java客户端jedis工具类以及Redis实现的跨jvm的锁  http://budairenqin.iteye.com/blog/1734193
 --征服 Redis + Jedis http://snowolf.iteye.com/blog/1633196
 
+Redis 和 spring 的整合    http://1025358610.iteye.com/blog/2102583
+
 SpringMVC整合Shiro   http://blog.csdn.net/jadyer/article/details/12208847#comments
 
 Apache Shiro 使用手册（一）Shiro架构介绍  http://kdboy.iteye.com/blog/1154644
@@ -168,8 +170,18 @@ CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/36
 --使用Spring+Maven配置Netty4   http://my.oschina.net/boomya/blog/139464
 --netty4.0研究之一  http://my.oschina.net/u/1384382/blog/170229
 
-Netty那点事（一）概述                http://my.oschina.net/flashsword/blog/162936
-Netty那点事（三）Channel与Pipeline   http://my.oschina.net/flashsword/blog?catalog=393528  
+--Netty那点事（一）概述                http://my.oschina.net/flashsword/blog/162936
+--Netty那点事（三）Channel与Pipeline   http://my.oschina.net/flashsword/blog?catalog=393528  
+
+Java NIO框架Netty教程（一） – Hello Netty   http://blog.csdn.net/kobejayandy/article/details/11493717
+
+java开发之netty里集成spring注入mysq连接池(一)   http://blog.chinaunix.net/uid-11121450-id-3147009.html
+java开发之netty里集成spring注入mysq连接池(二)   http://blog.chinaunix.net/uid-11121450-id-3147011.html
+
+
+基于netty4.0+spring的游戏完整架构  http://cpjsjxy.iteye.com/blog/2155673
+
+基于netty的后端服务器   https://github.com/xiaotutiger/miyue-music-service
 
 Netty源码解析 https://github.com/code4craft/netty-learning
 
