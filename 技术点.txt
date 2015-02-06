@@ -173,11 +173,13 @@ CFX构建webservice实例,与Spring整合.  http://www.cnblogs.com/dennisit/p/36
 --Netty那点事（一）概述                http://my.oschina.net/flashsword/blog/162936
 --Netty那点事（三）Channel与Pipeline   http://my.oschina.net/flashsword/blog?catalog=393528  
 
-Java NIO框架Netty教程（一） – Hello Netty   http://blog.csdn.net/kobejayandy/article/details/11493717
+--Java NIO框架Netty教程（一） – Hello Netty   http://blog.csdn.net/kobejayandy/article/details/11493717
 
-java开发之netty里集成spring注入mysq连接池(一)   http://blog.chinaunix.net/uid-11121450-id-3147009.html
-java开发之netty里集成spring注入mysq连接池(二)   http://blog.chinaunix.net/uid-11121450-id-3147011.html
+--java开发之netty里集成spring注入mysq连接池(一)   http://blog.chinaunix.net/uid-11121450-id-3147009.html
+--java开发之netty里集成spring注入mysq连接池(二)   http://blog.chinaunix.net/uid-11121450-id-3147011.html
 
+
+java游戏架构那点事儿（一）  http://cpjsjxy.iteye.com/blog/2144772
 
 基于netty4.0+spring的游戏完整架构  http://cpjsjxy.iteye.com/blog/2155673
 
