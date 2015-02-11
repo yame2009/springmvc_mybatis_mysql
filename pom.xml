@@ -369,6 +369,13 @@
 			<artifactId>commons-compress</artifactId>
 			<version>1.9</version>
 		</dependency>
+		
+		<!-- 网页解析工具包 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.4</version>
+		</dependency>
 
 		<!-- 网络工具包 -->
 		<dependency>
@@ -459,7 +466,8 @@
 			<version>1.8.1</version>
 		</dependency>
 
-		<!-- 高性能序列化框架FST,FST fast-serialization 是重新实现的 Java 快速对象序列化的开发包。序列化速度更快（2-10倍）、体积更小，而且兼容 JDK 原生的序列化。要求 JDK 1.7 支持。 -->
+		<!-- 高性能序列化框架FST,FST fast-serialization 是重新实现的 Java 快速对象序列化的开发包。序列化速度更快（2-10倍）、体积更小，而且兼容 
+			JDK 原生的序列化。要求 JDK 1.7 支持。 -->
 		<dependency>
 			<groupId>de.ruedigermoeller</groupId>
 			<artifactId>fst</artifactId>
