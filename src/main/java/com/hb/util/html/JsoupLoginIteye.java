@@ -57,7 +57,7 @@ public class JsoupLoginIteye {
         List<Element> et= d1.select("#login_form");//获取form表单，可以通过查看页面源码代码得知  
           
        //获取，cooking和表单属性，下面map存放post时的数据   
-       Map<String, String> datas=new HashMap<>();  
+       Map<String, String> datas=new HashMap<String, String>();  
        for(Element e:et.get(0).getAllElements()){  
            if(e.attr("name").equals("name")){  
                e.attr("value", userName);//设置用户名  

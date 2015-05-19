@@ -39,7 +39,7 @@ public class Query
     private String alias;
     private Integer pageNum;
     private Integer pageSize;
-    private List<Object> paramters = new ArrayList<>();
+    private List<Object> paramters = new ArrayList<Object>();
  
     private StringBuilder selectClause = new StringBuilder();
     private StringBuilder fromClause = new StringBuilder();
