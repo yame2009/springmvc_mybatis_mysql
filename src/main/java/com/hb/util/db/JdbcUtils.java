@@ -37,7 +37,7 @@ public class JdbcUtils {
     // 定义数据库的驱动信息
     private final String DRIVER = "com.mysql.jdbc.Driver";
     // 定义访问数据库的地址
-    private final String URL = "jdbc:mysql://localhost:3306/test";
+    private final String URL = "jdbc:mysql://localhost:3306/jinfuzi";
     // 定义数据库的链接
     private Connection connection;
     // 定义sql语句的执行对象

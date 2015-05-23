@@ -6,7 +6,7 @@
  * @date 2015年5月21日 下午12:54:50 
  * @version V1.0  
  */ 
-package com.hb.util.net;
+package com.hb.util.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
