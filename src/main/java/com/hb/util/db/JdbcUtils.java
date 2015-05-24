@@ -31,13 +31,13 @@ import com.hb.models.StudentInfo;
  */
 public class JdbcUtils {
     // 表示定义数据库的用户名
-    private final String USERNAME = "root";
+    private  String USERNAME = "root";
     // 定义数据库的密码
-    private final String PASSWORD = "root";
+    private  String PASSWORD = "";
     // 定义数据库的驱动信息
-    private final String DRIVER = "com.mysql.jdbc.Driver";
+    private  String DRIVER = "com.mysql.jdbc.Driver";
     // 定义访问数据库的地址
-    private final String URL = "jdbc:mysql://localhost:3306/jinfuzi";
+    private  String URL = "jdbc:mysql://localhost:3306/test";
     // 定义数据库的链接
     private Connection connection;
     // 定义sql语句的执行对象
@@ -46,6 +46,19 @@ public class JdbcUtils {
     private ResultSet resultSet;
     
     public JdbcUtils() {
+        try {
+            Class.forName(DRIVER);
+            System.out.println("注册驱动成功!!");
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+    
+    public JdbcUtils(String username,String password,String driver,String url) {
+    	this.USERNAME = username;
+    	this.PASSWORD = password;
+    	this.DRIVER = driver;
+    	this.URL = url;
         try {
             Class.forName(DRIVER);
             System.out.println("注册驱动成功!!");
@@ -90,6 +103,43 @@ public class JdbcUtils {
         result = pstmt.executeUpdate();
         flag = result > 0 ? true : false;
         return flag;
+    }
+    
+    /**
+     * 完成对数据库的表的添加删除和修改的操作
+     * 
+     * @param sql
+     * @param params
+     * @return
+     * @throws SQLException
+     */
+    public boolean insertByPreparedStatement(String sql, List<Object> params)
+            throws SQLException {
+        boolean flag = false;
+        pstmt = connection.prepareStatement(sql);
+        int index = 1;
+        if (params != null && !params.isEmpty()) {
+            for (int i = 0; i < params.size(); i++) {
+                pstmt.setObject(index++, params.get(i));
+            }
+        }
+//        pstmt.addBatch(sql);
+        return pstmt.execute();
+    }
+    
+    /**
+     * 完成对数据库的表的添加删除和修改的操作
+     * 
+     * @param sql
+     * @param params
+     * @return
+     * @throws SQLException
+     */
+    public boolean deleteTable(String sql)
+            throws SQLException {
+        boolean flag = false;
+        pstmt = connection.prepareStatement(sql);
+        return pstmt.execute();
     }
     
     /**

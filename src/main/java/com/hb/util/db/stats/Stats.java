@@ -23,203 +23,108 @@ public class Stats
     
     private String countryName;
     
-    private Integer provinceCode;
+    private String provinceCode;
     
     private String provinceName;
     
-    private Integer cityCode;
+    private String cityCode;
     
     private String cityName;
     
-    private Integer countyCode;
+    private String countyCode;
     
     private String countyName;
     
-    private Integer streetCode;
+    private String streetCode;
     
     private String streetName;
-    
-    
 
-    /**
-     * @return the countryCode
-     */
-    public String getCountryCode()
-    {
-        return countryCode;
-    }
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * @param countryCode the countryCode to set
-     */
-    public void setCountryCode(String countryCode)
-    {
-        this.countryCode = countryCode;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the countryName
-     */
-    public String getCountryName()
-    {
-        return countryName;
-    }
+	public String getCountryCode() {
+		return countryCode;
+	}
 
-    /**
-     * @param countryName the countryName to set
-     */
-    public void setCountryName(String countryName)
-    {
-        this.countryName = countryName;
-    }
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
 
-    /**
-     * @return the id
-     */
-    public String getId()
-    {
-        return id;
-    }
+	public String getCountryName() {
+		return countryName;
+	}
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id)
-    {
-        this.id = id;
-    }
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
 
-    /**
-     * @return the provinceCode
-     */
-    public Integer getProvinceCode()
-    {
-        return provinceCode;
-    }
+	public String getProvinceCode() {
+		return provinceCode;
+	}
 
-    /**
-     * @param provinceCode the provinceCode to set
-     */
-    public void setProvinceCode(Integer provinceCode)
-    {
-        this.provinceCode = provinceCode;
-    }
+	public void setProvinceCode(String provinceCode) {
+		this.provinceCode = provinceCode;
+	}
 
-    /**
-     * @return the provinceName
-     */
-    public String getProvinceName()
-    {
-        return provinceName;
-    }
+	public String getProvinceName() {
+		return provinceName;
+	}
 
-    /**
-     * @param provinceName the provinceName to set
-     */
-    public void setProvinceName(String provinceName)
-    {
-        this.provinceName = provinceName;
-    }
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
 
-    /**
-     * @return the cityCode
-     */
-    public Integer getCityCode()
-    {
-        return cityCode;
-    }
+	public String getCityCode() {
+		return cityCode;
+	}
 
-    /**
-     * @param cityCode the cityCode to set
-     */
-    public void setCityCode(Integer cityCode)
-    {
-        this.cityCode = cityCode;
-    }
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
+	}
 
-    /**
-     * @return the cityName
-     */
-    public String getCityName()
-    {
-        return cityName;
-    }
+	public String getCityName() {
+		return cityName;
+	}
 
-    /**
-     * @param cityName the cityName to set
-     */
-    public void setCityName(String cityName)
-    {
-        this.cityName = cityName;
-    }
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
 
-    /**
-     * @return the countycode
-     */
-    public Integer getCountyCode()
-    {
-        return countyCode;
-    }
+	public String getCountyCode() {
+		return countyCode;
+	}
 
-    /**
-     * @param countycode the countycode to set
-     */
-    public void setCountyCode(Integer countycode)
-    {
-        this.countyCode = countycode;
-    }
+	public void setCountyCode(String countyCode) {
+		this.countyCode = countyCode;
+	}
 
-    /**
-     * @return the countyName
-     */
-    public String getCountyName()
-    {
-        return countyName;
-    }
+	public String getCountyName() {
+		return countyName;
+	}
 
-    /**
-     * @param countyName the countyName to set
-     */
-    public void setCountyName(String countyName)
-    {
-        this.countyName = countyName;
-    }
+	public void setCountyName(String countyName) {
+		this.countyName = countyName;
+	}
 
-    /**
-     * @return the streetCode
-     */
-    public Integer getStreetCode()
-    {
-        return streetCode;
-    }
+	public String getStreetCode() {
+		return streetCode;
+	}
 
-    /**
-     * @param streetCode the streetCode to set
-     */
-    public void setStreetCode(Integer streetCode)
-    {
-        this.streetCode = streetCode;
-    }
+	public void setStreetCode(String streetCode) {
+		this.streetCode = streetCode;
+	}
 
-    /**
-     * @return the streetName
-     */
-    public String getStreetName()
-    {
-        return streetName;
-    }
+	public String getStreetName() {
+		return streetName;
+	}
 
-    /**
-     * @param streetName the streetName to set
-     */
-    public void setStreetName(String streetName)
-    {
-        this.streetName = streetName;
-    }
-
-    
-    
-    
-    
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
     
 }
