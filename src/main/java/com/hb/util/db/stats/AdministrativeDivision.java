@@ -158,7 +158,7 @@ public class AdministrativeDivision {
 			return;
 		}
 		for (Stats st : statsList) {
-			Insert sqltemp = SQL.Insert("stats")
+			Insert sqltemp = SQL.Insert("crm_stats")
 					.Values("id", StringUtil.getUUID())
 					.Values("countryCode", st.getCountryCode())
 					.Values("countryName", st.getCountryName())
@@ -193,11 +193,11 @@ public class AdministrativeDivision {
 	}
 
 	public static void main(String[] s) throws SQLException {
-		JdbcUtils jdbcUtils = new JdbcUtils();
+		JdbcUtils jdbcUtils = new JdbcUtils("root","root","com.mysql.jdbc.Driver","jdbc:mysql://localhost:3306/jinfuzi");
 		jdbcUtils.getConnection();
 		
 		AdministrativeDivision ad = new AdministrativeDivision();
-		jdbcUtils.deleteTable("delete from stats");
+		jdbcUtils.deleteTable("delete from crm_stats");
 		ad.insertDB(ad.doStats(ad.getXyx_xzqhList(jdbcUtils)),jdbcUtils);
 		
 		jdbcUtils.releaseConn();

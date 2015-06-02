@@ -69,7 +69,7 @@ public class Xzqhdm {
         PreparedStatement pstmt = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/jinfuzi?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull", "root", "root");
             conn.setAutoCommit(false);// 事务不自动提交
  
             pstmt = conn.prepareStatement("delete from xyx_xzqh");
