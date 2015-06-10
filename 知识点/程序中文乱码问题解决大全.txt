@@ -1,0 +1,47 @@
+1、TOMCAT中解决中文乱码
+
+在conf/server.xml文件中，增加一句URIEncoding="gb2312"的代码到下面的地方，选择合适的编码方式
+
+  <Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" 
+
+redirectPort="8443" URIEncoding="gb2312"/>  
+
+2、servlet中解决中文乱码
+
+response.setContentType("content=text/html; charset=gb2312");
+
+response.setCharacterEncoding("gb2312");
+request.setCharacterEncoding("gb2312");
+
+3、连接mysql数据库解决中文乱码
+
+String url = "jdbc:mysql://localhost:3306/DBName?characterEncoding=gb2312";
+
+4、HTML页面解决中文乱码
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+5、JSP页面解决中文乱码
+
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
+6、mysql数据库解决中文乱码
+简单有效的一个解决方法：
+打开\MySQL Server 5.0\my.ini
+找到
+[mysql]
+default-character-set=latin1
+和
+# created and no character set is defined
+default-character-set=latin1
+
+改成
+[mysql]
+default-character-set=gb2312
+# created and no character set is defined
+default-character-set=gb2312
+
+
+以上就是我目前所学到的知识中出现过的问题，相信还有更多的解决方案以及新的问题，所以也希望和大家一块来讨论一下，总结所有的中文乱码问题！
+http://blog.csdn.net/qiaqia609/article/details/8099966
+
