@@ -480,6 +480,17 @@
 			<artifactId>kryo</artifactId>
 			<version>2.24.0</version>
 		</dependency>
+		
+		<!-- http://www.oschina.net/p/javacpp
+			JavaCPP提供了在Java中高效访问本地C++的方法。采用JNI技术实现，支持所有Java实现包括Android系统，Avian 和 RoboVM。
+			JavaCPP提供了一系列的Annotation将Java代码映射到C++代码，并使用一个可执行的jar包将C++代码转化为可以从JVM内调用的动态链接库文件。
+	    -->
+	    <dependency>
+    		<groupId>org.bytedeco</groupId>
+    		<artifactId>javacpp</artifactId>
+  		    <version>0.11</version>
+		</dependency>
+	    
 
 	</dependencies>
 
